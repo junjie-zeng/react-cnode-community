@@ -76,6 +76,20 @@ class Home extends React.Component<Props, State> {
 
     }
 
+    // handleTouchEnd = (ev:any)=>{
+    //     let { page, limit } = this.state
+    //     // 判断下拉动作
+    //     if (ev.y > 30) {
+    //         this.setState({
+    //             page: ++page,
+    //         })
+    //         getContent(page, limit)
+    //     }
+    //     this.setState({
+    //         dropDownRefresh: false
+    //     })
+    // }
+
 
 
     render() {
