@@ -1,13 +1,537 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+ /* 初始化内外边距，不同的浏览器边距是不一样的 */
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+
+ /* 取消em与i自带的样式 */
+
+ em, i {
+   font-style: normal
+ }
+
+ /* 取消li的样式 */
+
+ li {
+   list-style: none
+ }
+
+ /* 取消图片底部默认空白缝隙 */
+
+ img {
+   border: 0;
+   vertical-align: middle
+ }
+
+ /* 鼠标样式 */
+
+ button {
+   cursor: pointer
+ }
+
+ /* 取消下划线并设置颜色 */
+
+ a {
+   color: #666;
+   text-decoration: none;
+ }
+
+ /* 设置字体 */
+
+ button, input {
+   font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif
+ }
+
+ body {
+   -webkit-font-smoothing: antialiased;
+   background-color: #fff;
+   font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+   color: #666
+ }
+
+ /* 类：隐藏 */
+
+ .hide, .none {
+   display: none
+ }
+
+ /* 清除浮动 */
+
+ .clearfix:after {
+   visibility: hidden;
+   clear: both;
+   display: block;
+   content: ".";
+   height: 0
+ }
+
+ .clearfix {
+   *zoom: 1
+ }
+
+ body {
+   background-color: #eeeeee;
+ }
+
+ .refresh-tips {
+   text-align: center;
+   height: 35px;
+   line-height: 35px;
+ }
+
+ .list-box .list-item {
+   animation: swing 1s .2s ease both;
+ }
+
+ @keyframes swing {
+   20%, 40%, 60%, 80%, 100% {
+     transform-origin: top center
+   }
+   20% {
+     transform: rotate(15deg)
+   }
+   40% {
+     transform: rotate(-10deg)
+   }
+   60% {
+     transform: rotate(5deg)
+   }
+   80% {
+     transform: rotate(-5deg)
+   }
+   100% {
+     transform: rotate(0deg)
+   }
+ }
+
+ @keyframes msgTips{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+ }
+
+ .msg-tips {
+   position: absolute;
+   top: 51px;
+   z-index: 1;
+   height: 30px;
+   background: #3388ff;
+   width: 100%;
+   color: #fff;
+   text-align: center;
+   line-height: 30px;
+   animation: msgTips 2s forwards;
+
+ }
+
+ .list-box {
+   overflow: hidden;
+ }
+
+ .list-box .list-item {
+   box-shadow: 0px 3px 12px -3px rgba(0, 0, 0, .2);
+   padding: 10px 10px 0px 10px;
+   margin-bottom: 20px;
+   background: #fff;
+ }
+
+ .list-box .list-item .item-top {
+   height: 45px;
+ }
+
+ .list-box .list-item .item-top .top-portrait {
+   width: 45px;
+   height: 45px;
+   border-radius: 50%;
+   background-color: gold;
+   float: left;
+   margin-left: 10px;
+ }
+
+ .list-box .list-item .item-top .top-portrait img {
+   width: 100%;
+   border-radius: 50%;
+ }
+
+ .list-box .list-item .item-top h3 {
+   font-weight: 400;
+   font-style: 14px;
+   float: left;
+   height: 45px;
+   line-height: 45px;
+   margin-left: 10px;
+ }
+
+ .list-box .list-item .item-top .top-sizebox {
+   float: right;
+   font-size: 14px;
+   background-color: sandybrown;
+   text-align: center;
+   padding: 5px 10px;
+   margin-top: 8px;
+   margin-right: 10px;
+   border-radius: 5px;
+   color: #fff;
+ }
+
+ .list-box .list-item .item-top .top-time {
+   float: right;
+   font-size: 14px;
+   margin-right: 10px;
+   margin-top: 12px;
+ }
+
+ .list-box .list-item .item-content {
+   margin-top: 20px;
+   height: 70px;
+   padding: 0px 20px;
+ }
+
+ .list-box .list-item .item-content p {
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 3;
+   overflow: hidden;
+   text-align: left;
+ }
+
+ .list-box .item-operation {
+   height: 50px;
+   border-top: solid 1px #f3f3f3;
+ }
+
+ .list-box .list-item .item-operation li {
+   float: left;
+   width: 32.333333333333336%;
+   height: 100%;
+   text-align: center;
+   line-height: 50px;
+ }
+
+ .list-box .list-item .item-operation li a {
+   text-decoration: none;
+   display: inline-block;
+   width: 100%;
+   color: black;
+ }
+
+ .list-box .list-item .item-operation li.two {
+   border-left: solid 1px #f3f3f3;
+   border-right: solid 1px #f3f3f3;
+ }
+
+ .list-box .list-item .item-operation li a em {
+   font-style: normal;
+   display: inline-block;
+   margin: 0 5px;
+ }
+
+ .main-box .list-box .list-item {
+   height: 192px;
+ }
+
+ .main-box .list-box {
+   position: absolute;
+   width: 100%;
+   top: 50px;
+   bottom: 50px;
+ }
+
+ /* 评论与列表 */
+
+ .comment-box {}
+
+ /* header */
+
+ .header {
+   position: fixed;
+   top: 0;
+   z-index: 1;
+   height: 50px;
+   width: 100%;
+   background-color: #fff;
+   box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, .1);
+ }
+
+ .header div {
+   float: left;
+   height: 50px;
+   line-height: 50px;
+ }
+
+ .header .header-left {
+   width: 30%;
+ }
+
+ .header .header-left em {
+   font-style: normal;
+   padding-left: 10px;
+   font-style: 16px;
+ }
+
+ .header .header-center {
+   width: 40%;
+   text-align: center;
+ }
+
+ .header .header-right {
+   width: 30%;
+   text-align: right;
+ }
+
+ .header .header-right em {
+   padding-right: 20px;
+ }
+
+ /* 评论 */
+
+ .comment-box .comment-content {
+   position: absolute;
+   top: 50px;
+   bottom: 40px;
+   /* margin-top: 50px; */
+   background-color: #fff;
+ }
+
+ .comment-box .comment-content .comment-title {
+   padding: 5px 0px;
+   /* border-bottom: solid 1px gray; */
+ }
+
+ .comment-box .comment-content .comment-title div {
+   border-left: 5px solid #3388ff;
+   height: 40px;
+ }
+
+ .comment-box .comment-content .comment-title span {
+   font-size: 16px;
+   font-weight: 700;
+   padding: 10px 0px 0px 5px;
+   display: inline-block;
+ }
+
+ .comment-box .comment-list .list-item {
+   padding: 10px;
+   height: 105px;
+   /* background-color: burlywood; */
+ }
+
+ .comment-box .comment-list .list-item .item-wrapper {
+   height: 45px;
+ }
+
+ .comment-box .comment-list .list-item .item-wrapper .wrapper-portrait {
+   width: 45px;
+   height: 45px;
+   border-radius: 50%;
+   background-color: pink;
+   float: left;
+ }
+
+ .comment-box .comment-list .list-item .item-wrapper .wrapper-name {
+   float: left;
+   padding-left: 10px;
+   padding-top: 10px;
+ }
+
+ .comment-box .comment-list .list-item .item-wrapper .wrapper-give {
+   float: right;
+   padding-top: 10px;
+   padding-right: 15px;
+   font-style: normal;
+ }
+
+ .comment-box .comment-list .list-item .item-wrapper .wrapper-give em {
+   font-style: normal;
+ }
+
+ .comment-box .comment-list .list-item .item-content {
+   padding: 10px 10px 10px 20px;
+   height: 40px;
+ }
+
+ .comment-box .comment-release {
+   height: 40px;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   box-shadow: 0px -1px 5px 1px rgba(0, 0, 0, .1);
+   background-color: #fff;
+ }
+
+ .comment-box .comment-release input {
+   border: none;
+   height: 30px;
+   width: 75%;
+   margin: 5px 0px 5px 10px;
+   background: #eeeeee;
+ }
+
+ .comment-box .comment-release button {
+   height: 30px;
+   background: #3388ff;
+   color: #fff;
+   border: #3388ff;
+   width: 20%;
+ }
+
+ /* tab  */
+
+ .tab-box {
+   position: fixed;
+   width: 100%;
+   top: 0;
+   z-index: 1;
+   height: 40px;
+   background-color: #fff;
+   border: solid 1px #eee;
+ }
+
+ .tab-box ul li {
+   list-style: none;
+   display: inline-block;
+   width: 18%;
+ }
+
+ .tab-box ul li a {
+   text-decoration: none;
+   display: inline-block;
+   color: black;
+   height: 40px;
+   line-height: 40px;
+   width: 100%;
+   text-align: center;
+   font-size: 14px;
+ }
+
+ .tab-box ul li .active {
+   border-bottom: solid 3px #108ee9;
+   color: #108ee9;
+ }
+
+ .nav {
+   height: 50px;
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
+   color: #3c3c3c;
+   background-color: #fff;
+   font-size: 14px;
+ }
+
+ .nav div {
+   float: left;
+   width: 25%;
+ }
+
+ .nav div span {
+   display: block;
+   margin-top: 5px;
+ }
+
+ .nav .active span {
+   color: #108ee9;
+ }
+
+ .classif-box .list-item {
+   box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, .1)
+ }
+
+ .classif-box .list-box {
+   position: absolute;
+   width: 100%;
+   top: 43px;
+   bottom: 50px;
+   margin-top: 0;
+ }
+
+ .my-box {}
+
+ .wrapper {
+   position: relative;
+   margin-top: 50px;
+   height: 170px;
+   background-image: url(https://alexlees.github.io/assets/img/bck.5fa4e35.png);
+ }
+
+ .wrapper .header-protrait {
+   position: absolute;
+   left: 50%;
+   margin-left: -35px;
+   top: 50%;
+   margin-top: -35px;
+   height: 70px;
+   width: 70px;
+   background: pink;
+   border-radius: 50%;
+ }
+
+ .info {
+   height: 50px;
+   background: #fff;
+   line-height: 50px;
+   padding: 0 10px;
+ }
+
+ .info span:nth-child(1) {
+   float: left;
+ }
+
+ .info span:nth-child(2) {
+   float: right;
+ }
+
+ .my-box .btn {
+   padding: 20px 0;
+   text-align: center;
+ }
+
+ .my-box .btn button {
+   margin: 0 auto;
+   padding: 20px;
+   width: 80%;
+   height: 50px;
+   border-radius: 5px;
+   background: #44bb00;
+   border: none;
+   color: #fff;
+ }
+
+ .msg-info {
+   width: 100%;
+   height: 50px;
+   background: #fff;
+ }
+
+ .msg-info a {
+   width: 50%;
+   height: 50px;
+   display: block;
+   float: left;
+   color: black;
+   text-align: center;
+   line-height: 50px;
+   text-decoration: none;
+ }
+
+ .msg-info a.active {
+   border-bottom: solid 2px #108ee9;
+   color: #108ee9;
+ }
+
+ .msg-content {
+   position: absolute;
+   top: 50px;
+   bottom: 50px;
+   z-index: -1;
+   width: 100%;
+   background: #eeeeee;
+   text-align: center;
+   line-height: 100px;
+ }
