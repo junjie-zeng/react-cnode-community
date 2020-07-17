@@ -13,7 +13,7 @@ export default function ajax(url ,data={},method = "GET"){
              paramStr += `${key}=${data[key]}&`
         })
         paramStr = paramStr && paramStr.substring(0,paramStr.length-1)
-        url = url ? `${url}?${paramStr}`:url
+        url = paramStr ? `${url}?${paramStr}`:url
         return axios.get(url)
     }else{
     	return axios.post(url,data)
