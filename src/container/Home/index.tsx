@@ -106,7 +106,7 @@ class Home extends React.Component<Props, State> {
                 <Scroll dropDownRefresh={dropDownRefresh} refreshTips={refreshTips}>
                     {
                         contentList.map((item: any, i: number) => (
-                            <div className="list-item" key={item.id} >
+                            <div className="list-item" key={i} >
                                 <div className="item-top">
                                     <div className="top-portrait">
                                         <img src={item.author.avatar_url} />
@@ -142,24 +142,7 @@ class Home extends React.Component<Props, State> {
                     }
                 </Scroll>
 
-                <div className="nav">
-                    <div className="active">
-                        <span className="iconfont icon-shouye"></span>
-                        <span>首页</span>
-                    </div>
-                    <div>
-                        <span className="iconfont icon-fenlei"></span>
-                        <span>分类</span>
-                    </div>
-                    <div>
-                        <span className="iconfont icon-dkw_xiaoxi"></span>
-                        <span>消息</span>
-                    </div>
-                    <div>
-                        <span className="iconfont icon-wo"></span>
-                        <span>我的</span>
-                    </div>
-                </div>
+                
             </div>
         )
     }
