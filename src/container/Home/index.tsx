@@ -121,18 +121,18 @@ class Home extends React.Component<Props, State> {
                                 <ul className="item-operation">
                                     <li>
                                         <a href="">
-                                            <em>xx</em>
+                                            <em className="iconfont icon-yanjing"></em>
                                             <em>{item.visit_count}</em>
                                         </a></li>
                                     <li className="two">
                                         <a href="">
-                                            <em>xx</em>
+                                            <em className="iconfont icon-dkw_xiaoxi"></em>
                                             <em>{item.reply_count}</em>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="">
-                                            <em>xx</em>
+                                            <em className="iconfont icon-shijian00"></em>
                                             <em>{getRelativeTime(item.last_reply_at)}</em>
                                         </a>
                                     </li>
@@ -141,22 +141,22 @@ class Home extends React.Component<Props, State> {
                         ))
                     }
                 </Scroll>
-               
+
                 <div className="nav">
                     <div className="active">
-                        <span>1</span>
+                        <span className="iconfont icon-shouye"></span>
                         <span>首页</span>
                     </div>
                     <div>
-                        <span>1</span>
+                        <span className="iconfont icon-fenlei"></span>
                         <span>分类</span>
                     </div>
                     <div>
-                        <span>1</span>
+                        <span className="iconfont icon-dkw_xiaoxi"></span>
                         <span>消息</span>
                     </div>
                     <div>
-                        <span>1</span>
+                        <span className="iconfont icon-wo"></span>
                         <span>我的</span>
                     </div>
                 </div>

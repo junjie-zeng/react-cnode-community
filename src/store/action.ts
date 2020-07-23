@@ -1,5 +1,6 @@
 import { getContentListRequest } from '../api'
 import { GET_CONTENT_SUSSESS, LOADING, REFRESHTIPS,MSG_TIPS } from './action-type'
+import { time } from 'console'
 
 
 /*
@@ -21,16 +22,16 @@ export const getContent = (page: number, limit: number) => {
     
     return async (dispatch: any) => {
         try {
-            let timer:any = null
+            
             // dispatch(changeLoading(true))
             dispatch(changeRefreshTips(true))
             dispatch(changeMsgTips(true))
             
             let res = await getContentListRequest(page, limit)
             let data = res.data
-            
+            let timer:any = null
+            console.log("timer start...",timer)
             if (data.success) {
-                
                 console.log("getContent", data.data)
                 // dispatch(changeLoading(false))
                 dispatch(changeRefreshTips(false))
@@ -40,7 +41,9 @@ export const getContent = (page: number, limit: number) => {
                     dispatch(changeMsgTips(false))
                     clearTimeout(timer)
                 },2000)
+               
             }
+            console.log("timer end...",timer)
 
         } catch (err) {
             console.log("getContent", err)
