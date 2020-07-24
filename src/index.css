@@ -226,19 +226,50 @@
    margin: 0 5px;
  }
 
- .main-box .list-box .list-item {
+ .list-box .list-item {
    height: 192px;
  }
 
- .main-box .list-box {
+ .list-box {
    position: absolute;
    width: 100%;
    top: 50px;
    bottom: 50px;
  }
 
+ @keyframes comment{
+   0%{
+    transform:rotateY(0)
+   }
+   100%{
+     transform:rotateY(180deg)
+   }
+ }
+
  /* 评论与列表 */
 
+ .detail-content{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  background: peru;
+ }
+.detail-comment{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  /* animation: comment 2s; */
+  /* transition: .3s; */
+
+   transform:rotateY(180deg)
+}
+
+.detail-comment .header,.detail-comment .comment-release{
+  position: absolute;
+}
  .comment-box {}
 
  /* header */
@@ -350,8 +381,8 @@
    height: 40px;
  }
 
- .comment-box .comment-release {
-   height: 40px;
+ .comment-release {
+   height: 50px;
    position: fixed;
    bottom: 0;
    width: 100%;
@@ -359,20 +390,24 @@
    background-color: #fff;
  }
 
- .comment-box .comment-release input {
-   border: none;
+ .comment-release input {
+   outline: none;
+   border: 0;
    height: 30px;
+   padding-left: 10px;
    width: 75%;
-   margin: 5px 0px 5px 10px;
+   margin: 10px 0px 5px 10px;
    background: #eeeeee;
  }
 
- .comment-box .comment-release button {
+ .comment-release button {
+   width: 20%;
    height: 30px;
    background: #3388ff;
    color: #fff;
    border: #3388ff;
-   width: 20%;
+   outline: none;
+   border: 0;
  }
 
  /* tab  */

@@ -13,7 +13,8 @@ interface Props {
     loading: boolean,
     refreshTips: boolean,
     contentList: any,
-    msgTips: boolean
+    msgTips: boolean,
+    history:any
 }
 
 interface State {
@@ -52,6 +53,11 @@ class Home extends React.Component<Props, State> {
     }
 
 
+    handleSeeComment(id:string){
+        this.props.history.push(`/detail/${id}`)
+    }
+
+
 
     render() {
         const { loading, refreshTips, contentList, msgTips } = this.props
@@ -76,7 +82,7 @@ class Home extends React.Component<Props, State> {
                                     <span className="top-time">{getRelativeTime(item.create_at)}</span>
                                     <span className="top-sizebox">{getThemeType(item.tab)}</span>
                                 </div>
-                                <div className="item-content">
+                                <div className="item-content" onClick = {()=>{this.handleSeeComment(item.id)}}>
                                     <p>{item.title}</p>
                                 </div>
                                 <ul className="item-operation">

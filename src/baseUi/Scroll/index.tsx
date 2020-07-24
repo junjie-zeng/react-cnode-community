@@ -5,7 +5,7 @@ import BScroll from 'better-scroll'
 interface Props {
     refreshTips: boolean
     handleTouchEnd: Function
-    children:string
+    children:any
 }
 
 interface State{

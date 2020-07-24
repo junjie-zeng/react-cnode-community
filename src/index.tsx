@@ -7,12 +7,15 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store/store'
 // hashRouter
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
     <HashRouter>
-      <App />
+      <Switch>
+        {/* 登入 /login */}
+        <Route path="/" component={App}></Route>
+      </Switch>
     </HashRouter>
   </Provider>
   // </React.StrictMode>
