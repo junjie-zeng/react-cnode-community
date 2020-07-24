@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import BScroll from 'better-scroll'
+
 import { getContent } from '../../store/action'
 import Tips from '../../components/Tips/Tips'
 import Header from '../../components/Header'
@@ -19,18 +19,15 @@ interface Props {
 interface State {
     page: number,
     limit: number,
-    dropDownRefresh: boolean
 }
 
 class Home extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props)
-
         this.state = {
             page: 1,
             limit: 5,
-            dropDownRefresh: false
         }
     }
 
@@ -43,67 +40,31 @@ class Home extends React.Component<Props, State> {
         getContent(1, limit)
 
     }
-    // 第一次渲染后
-    componentDidMount() {
-        const wrapper = new BScroll('.list-box', {
-            scrollY: true,
-            click: true,
-            probeType: 2,
-        })
-        const { getContent } = this.props
+
+
+    handleTouchEnd = () => {
         let { page, limit } = this.state
-
-        // 手指离开触发（模拟下拉刷新）
-        wrapper.on('touchEnd', (ev: any) => {
-            // 判断下拉动作
-            if (ev.y > 30) {
-                this.setState({
-                    page: ++page,
-                })
-                getContent(page, limit)
-            }
-            this.setState({
-                dropDownRefresh: false
-            })
+        const { getContent } = this.props
+        this.setState({
+            page: ++page,
         })
-
-        wrapper.on('scroll', (ev) => {
-            // console.log("test")
-            this.setState({
-                dropDownRefresh: true
-            })
-        })
-
+        getContent(page, limit)
     }
-
-    // handleTouchEnd = (ev:any)=>{
-    //     let { page, limit } = this.state
-    //     // 判断下拉动作
-    //     if (ev.y > 30) {
-    //         this.setState({
-    //             page: ++page,
-    //         })
-    //         getContent(page, limit)
-    //     }
-    //     this.setState({
-    //         dropDownRefresh: false
-    //     })
-    // }
 
 
 
     render() {
         const { loading, refreshTips, contentList, msgTips } = this.props
-        const { dropDownRefresh } = this.state
-        // console.log(loading)
-        // console.log(refreshTips)
-        // console.log(contentList)
         return (
 
             <div className="main-box">
-                <Header left="" right="" center='标题'></Header>
+                <div className="header">
+                    <div className="header-left" style={{ visibility: 'hidden' }}><em className="iconfont icon-fanhui"></em></div>
+                    <div className="header-center">CNode.js中文社区</div>
+                    <div className="header-right"><em className="iconfont icon-qita"></em></div>
+                </div>
                 <Tips lei="msg-tips" isShow={msgTips} >新增10条主题请查收！</Tips>
-                <Scroll dropDownRefresh={dropDownRefresh} refreshTips={refreshTips}>
+                <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
                     {
                         contentList.map((item: any, i: number) => (
                             <div className="list-item" key={i} >
@@ -141,8 +102,6 @@ class Home extends React.Component<Props, State> {
                         ))
                     }
                 </Scroll>
-
-                
             </div>
         )
     }
