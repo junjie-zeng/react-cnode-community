@@ -13,3 +13,5 @@ const _PATH = 'https://cnodejs.org/api/v1'
 export const getContentListRequest = (page, limit) => ajax(`${_PATH}/topics?page=${page}&limit=${limit}`)
 
 // https://cnodejs.org/api/v1/topic/5ee1ee83b703280f0bcb922a
+
+export const getContentDetailRequest = (id)=>ajax(`${_PATH}/topic/${id}`)

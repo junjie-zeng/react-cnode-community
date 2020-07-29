@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { Action } from '../interface'
-import { GET_CONTENT_SUSSESS, LOADING, REFRESHTIPS, MSG_TIPS } from './action-type'
+import { GET_CONTENT_SUCCESS,GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS } from './action-type'
 
 
 
@@ -11,14 +11,17 @@ const contentInfo = {
     loading: false,
     refreshTips: false,
     msgTips: false,
-    contentList: []
+    contentList: [],
+    detail:{}
 }
 
 
 const content = (state = contentInfo, action: Action) => {
     switch (action.type) {
-        case GET_CONTENT_SUSSESS:
+        case GET_CONTENT_SUCCESS:
             return { ...state, contentList: [...action.data, ...state.contentList] }
+        case GET_CONTENT_DETAIL_SUCCESS:
+            return {...state,detail:action.data}
         case LOADING:
             return { ...state, loading: action.data }
         case REFRESHTIPS:
