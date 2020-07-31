@@ -15,3 +15,6 @@ export const getContentListRequest = (page, limit, tab = '' ) => ajax(`${_PATH}/
 // https://cnodejs.org/api/v1/topic/5ee1ee83b703280f0bcb922a
 
 export const getContentDetailRequest = (id) => ajax(`${_PATH}/topic/${id}`)
+
+export const getUserDetailRequest = (username)=>ajax(`${_PATH}/user/${username}`)
+// https://cnodejs.org/api/v1/user/Q-Angelo
