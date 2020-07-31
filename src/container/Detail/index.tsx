@@ -4,8 +4,11 @@ import Scroll from '../../baseUi/Scroll'
 import { getDetail } from './../../store/action'
 interface Props {
     match: any
+    history:any
     getDetail: Function
     detail: any
+    refreshTips:boolean
+    
 }
 
 interface State {
@@ -18,20 +21,21 @@ class Detail extends React.Component<Props, State>{
         super(props)
         this.state = {
             // 默认展示内容
-            isContent: false,
+            isContent: true,
             commentContent: ''
         }
     }
     // 渲染前
     componentWillMount() {
+        this._loadingDetail()
+    }
+
+    _loadingDetail(){
         const { getDetail } = this.props
         const { match } = this.props
-
-
         const id = match.params.id
         getDetail(id)
-        console.log(id)
-
+        //console.log(id)
     }
 
     handleDetailSwitch(flag: boolean) {
@@ -63,19 +67,19 @@ class Detail extends React.Component<Props, State>{
 
     render() {
         const { isContent, commentContent } = this.state
-        const { detail } = this.props
-        console.log(detail)
+        const { detail,refreshTips } = this.props
+        //console.log(detail)
         return (
             <div className={isContent ? ' detail-box' : 'comment-box detail-box detail-rotate'}>
                 {
                     isContent ?
                         <div className="detail-content">
                             <div className="header">
-                                <div className="header-left" ><em className="iconfont icon-fanhui"></em></div>
+                                <div className="header-left" ><em className="iconfont icon-fanhui" onClick = {()=>{ this.props.history.go(-1)}}></em></div>
                                 <div className="header-center">内容</div>
                                 <div className="header-right"><em className="iconfont icon-shoucang"></em></div>
                             </div>
-                            <Scroll handleTouchEnd={() => { }} refreshTips={true}>
+                            <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
                                 <div style={{ padding: '10px' }} dangerouslySetInnerHTML={{ __html: detail.content }}></div>
                             </Scroll>
                             <div className="comment-release">
@@ -92,7 +96,7 @@ class Detail extends React.Component<Props, State>{
                                 <div className="header-center">评论</div>
                                 <div className="header-right" style={{ visibility: 'hidden' }}><em className="iconfont icon-shoucang"></em></div>
                             </div>
-                            <Scroll handleTouchEnd={() => { }} refreshTips={true}>
+                            <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
                                 <div className="comment-title">
                                     <div>
                                         <span>评论.11</span>
@@ -144,7 +148,8 @@ class Detail extends React.Component<Props, State>{
 
 const mapStateToProps = (state: any) => {
     return {
-        detail: state.content.detail
+        detail: state.content.detail,
+        refreshTips:state.content.refreshTips
     }
 }
 

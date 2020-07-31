@@ -9,10 +9,10 @@ import { GET_CONTENT_SUCCESS,GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, M
 // 首页
 const contentInfo = {
     loading: false,
-    refreshTips: false,
-    msgTips: false,
-    contentList: [],
-    detail:{}
+    refreshTips: false, // 刷新提示 加载中
+    msgTips: false,     // 刷新提示
+    contentList: [],    // 内容列表
+    detail:{}           // 详情
 }
 
 

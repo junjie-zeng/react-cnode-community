@@ -58,10 +58,12 @@ export const getContent = (page: number, limit: number) => {
 export const getDetail = (id:string)=>{
     return async(dispatch:any)=>{
         try{
+            dispatch(changeRefreshTips(true))
             let res:any =  await getContentDetailRequest(id)
             let data = res.data
             if(data.success){
                 dispatch(changeDetail(data.data))
+                dispatch(changeRefreshTips(false))
             }
             console.log('getDetail',res)
         }catch(err){
