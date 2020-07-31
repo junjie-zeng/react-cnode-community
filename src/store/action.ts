@@ -1,5 +1,5 @@
 import { getContentListRequest,getContentDetailRequest } from '../api'
-import { GET_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS } from './action-type'
+import { GET_CONTENT_SUCCESS,GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS } from './action-type'
 import { time } from 'console'
 
 
@@ -8,7 +8,8 @@ import { time } from 'console'
 */
 
 // 获取内容成功
-const changeContentList = (data: any) => ({ type: GET_CONTENT_SUCCESS, data })
+const changeContent = (data: any) => ({ type: GET_CONTENT_SUCCESS, data })
+const changeClassifyContent = (data: any) => ({ type: GET_CLASSIFY_CONTENT_SUCCESS, data })
 const changeLoading = (data: boolean) => ({ type: LOADING, data })
 const changeRefreshTips = (data: boolean) => ({ type: REFRESHTIPS, data })
 const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
@@ -36,7 +37,7 @@ export const getContent = (page: number, limit: number) => {
                 console.log("getContent", data.data)
                 // dispatch(changeLoading(false))
                 dispatch(changeRefreshTips(false))
-                dispatch(changeContentList(data.data))
+                dispatch(changeContent(data.data))
                 clearTimeout(timer)
                 timer = setTimeout(() => {
                     dispatch(changeMsgTips(false))
@@ -48,6 +49,24 @@ export const getContent = (page: number, limit: number) => {
 
         } catch (err) {
             console.log("getContent", err)
+        }
+
+    }
+
+}
+
+// 根据分类获取内容
+export const getClassifyContent = (page: number, limit: number,tab:string) => {
+    return async (dispatch: any) => {
+        try {
+            dispatch(changeRefreshTips(true))
+            let res = await getContentListRequest(page, limit,tab)
+            let data = res.data
+            console.log("getClassifyContent...", data.data)
+            dispatch(changeRefreshTips(false))
+            dispatch(changeClassifyContent(data.data))
+        } catch (err) {
+            console.log("getClassifyContent...", err)
         }
 
     }
