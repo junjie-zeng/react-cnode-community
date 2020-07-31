@@ -36,9 +36,9 @@ class Home extends React.Component<Props, State> {
     // 渲染前
     componentWillMount() {
         const { getContent } = this.props
-        const { limit } = this.state
+        const { limit ,page} = this.state
         // todo传参
-        getContent(1, limit)
+        getContent(page, limit)
 
     }
 
@@ -75,9 +75,7 @@ class Home extends React.Component<Props, State> {
                         contentList.map((item: any, i: number) => (
                             <div className="list-item" key={i} >
                                 <div className="item-top">
-                                    <div className="top-portrait">
-                                        <img src={item.author.avatar_url} />
-                                    </div>
+                                    <div className="top-portrait" style={{ backgroundImage: `url(${item.author.avatar_url})`}}></div>
                                     <h3>{item.author.loginname}</h3>
                                     <span className="top-time">{getRelativeTime(item.create_at)}</span>
                                     <span className="top-sizebox">{getThemeType(item.tab)}</span>
