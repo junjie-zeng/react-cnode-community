@@ -549,11 +549,11 @@
  }
 
  .msg-box .list-box .list-item {
-   height: 130px; 
+   height: 130px;
  }
 
- .msg-box .list-box .list-item .item-content{
-  height: auto;
+ .msg-box .list-box .list-item .item-content {
+   height: auto;
  }
 
  .msg-info {
@@ -587,4 +587,18 @@
    background: #eeeeee;
    text-align: center;
    line-height: 100px;
+ }
+
+ .my-info-box .list-box {
+   position: static;
+   top: auto;
+   bottom: auto;
+ }
+
+ .my-info-box .list-box .list-item{
+  height: 130px;
+ }
+
+ .my-info-box .list-box .list-item .item-content{
+   height: auto;
  }

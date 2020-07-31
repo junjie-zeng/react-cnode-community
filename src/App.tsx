@@ -10,6 +10,7 @@ import Classify from './container/Classify'
 import My from './container/My'
 import NavFooter from './components/Nav-footer'
 import ContentDetail from './container/ContentDetail'
+import UserDetail from './container/UserDetail'
 class App extends React.Component<any>{
   navList = [
     {
@@ -52,6 +53,7 @@ class App extends React.Component<any>{
           <Route path='/classify' component={Classify}></Route>
           <Route path='/my' component={My}></Route>
           <Route path='/detail/:id' component={ContentDetail}></Route>
+          <Route path='/user/:username' component={UserDetail}></Route>
         </Switch>
         {currentNav ? <NavFooter navList = {navList}/> : null}
         

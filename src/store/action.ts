@@ -1,5 +1,5 @@
-import { getContentListRequest,getContentDetailRequest } from '../api'
-import { GET_CONTENT_SUCCESS,GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS } from './action-type'
+import { getContentListRequest,getContentDetailRequest,getUserDetailRequest } from '../api'
+import { GET_CONTENT_SUCCESS,GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS,GET_USERINFO_SUCCESS } from './action-type'
 import { time } from 'console'
 
 
@@ -7,13 +7,16 @@ import { time } from 'console'
     同步action
 */
 
-// 获取内容成功
+// 修改内容
 const changeContent = (data: any) => ({ type: GET_CONTENT_SUCCESS, data })
 const changeClassifyContent = (data: any) => ({ type: GET_CLASSIFY_CONTENT_SUCCESS, data })
 const changeLoading = (data: boolean) => ({ type: LOADING, data })
 const changeRefreshTips = (data: boolean) => ({ type: REFRESHTIPS, data })
 const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
 const changeDetail = (data: any) => ({ type: GET_CONTENT_DETAIL_SUCCESS, data })
+
+// 修改用户信息
+const changeUserDetail = (data:any)=>({type:GET_USERINFO_SUCCESS,data})
 
 /*
     异步action
@@ -87,6 +90,22 @@ export const getDetail = (id:string)=>{
             console.log('getDetail',res)
         }catch(err){
             console.log('getDetail',err)
+        }
+    }
+}
+
+// 获取用户信息
+
+
+export const getUserDetail = (username:string)=>{
+    return async (dispatch:any)=>{
+        try{
+            let res:any = await getUserDetailRequest(username)
+            let data = res.data
+            dispatch(changeUserDetail(data.data))
+            console.log('getUserDetail...',data.data)
+        }catch(err){
+            console.log('getUserDetail...',err)
         }
     }
 }
