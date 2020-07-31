@@ -9,7 +9,7 @@ import Msg from './container/Msg'
 import Classify from './container/Classify'
 import My from './container/My'
 import NavFooter from './components/Nav-footer'
-import ContentDetail from './container/contentDetail'
+import ContentDetail from './container/ContentDetail'
 class App extends React.Component<any>{
   navList = [
     {
