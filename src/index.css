@@ -273,7 +273,7 @@
    z-index: 1;
  }
 
- .detail-content img{
+ .detail-content img {
    width: 100%;
  }
 
@@ -338,7 +338,6 @@
    width: 100%;
    /* margin-top: 50px; */
    background-color: #fff;
-   
  }
 
  .comment-box .list-box .comment-title {
@@ -547,6 +546,14 @@
    background: #44bb00;
    border: none;
    color: #fff;
+ }
+
+ .msg-box .list-box .list-item {
+   height: 130px; 
+ }
+
+ .msg-box .list-box .list-item .item-content{
+  height: auto;
  }
 
  .msg-info {
