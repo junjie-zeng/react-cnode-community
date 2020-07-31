@@ -41,8 +41,8 @@ class App extends React.Component<any>{
     const path = this.props.location.pathname;
     //得到当前的nav,可能没有
     const currentNav = navList.find(nav => nav.path == path);
-    console.log(currentNav)
-    console.log(this.props)
+    // console.log(currentNav)
+    // console.log(this.props)
     return (
       <div >
         {/* {renderRoutes(routes)} */}
