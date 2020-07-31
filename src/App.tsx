@@ -9,7 +9,7 @@ import Msg from './container/Msg'
 import Classify from './container/Classify'
 import My from './container/My'
 import NavFooter from './components/Nav-footer'
-import Detail from './container/Detail'
+import ContentDetail from './container/contentDetail'
 class App extends React.Component<any>{
   navList = [
     {
@@ -51,7 +51,7 @@ class App extends React.Component<any>{
           <Route path='/msg' component={Msg}></Route>
           <Route path='/classify' component={Classify}></Route>
           <Route path='/my' component={My}></Route>
-          <Route path='/detail/:id' component={Detail}></Route>
+          <Route path='/detail/:id' component={ContentDetail}></Route>
         </Switch>
         {currentNav ? <NavFooter navList = {navList}/> : null}
         
