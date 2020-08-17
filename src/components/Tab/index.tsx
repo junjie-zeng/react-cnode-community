@@ -9,17 +9,17 @@ class Tab extends React.Component<Props> {
     render() {
         const { Tablist, switchTab } = this.props
         return (
-            <div className="tab-box">
-                <ul>
-                    {
-                        Tablist.map((item: any, index: number) => (
-                            <li key={index} >
-                                <a href="javascript:void(0);" className={item.active ? 'active' : ''} onClick={()=>switchTab(index,item.type)}>{item.name}</a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
+            <ul className="tab">
+                {
+                    Tablist.map((item: any, index: number) => (
+                        <li key={index} className={item.active ? 'active' : ''} onClick={() => switchTab(index, item.type)}>
+                            {item.name}
+                        </li>
+                    ))
+                }
+
+            </ul>
+
         )
     }
 }

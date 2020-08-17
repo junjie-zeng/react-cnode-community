@@ -14,7 +14,7 @@ interface Props {
     refreshTips: boolean,
     contentList: any,
     msgTips: boolean,
-    history:any
+    history: any
 }
 
 interface State {
@@ -36,7 +36,7 @@ class Home extends React.Component<Props, State> {
     // 渲染前
     componentWillMount() {
         const { getContent } = this.props
-        const { limit ,page} = this.state
+        const { limit, page } = this.state
         // todo传参
         getContent(page, limit)
 
@@ -53,59 +53,66 @@ class Home extends React.Component<Props, State> {
     }
 
 
-    handleSeeComment(id:string){
+    handleSeeComment(id: string) {
         this.props.history.push(`/detail/${id}`)
     }
 
 
 
     render() {
-        const { loading, refreshTips, contentList, msgTips ,history} = this.props
+        const { loading, refreshTips, contentList, msgTips, history } = this.props
         return (
-
-            <div className="main-box">
-                <div className="header">
-                    <div className="header-left" style={{ visibility: 'hidden' }}><em className="iconfont icon-fanhui"></em></div>
-                    <div className="header-center">CNode.js中文社区</div>
-                    <div className="header-right"><em className="iconfont icon-qita"></em></div>
-                </div>
-                <Tips lei="msg-tips" isShow={msgTips} >新增10条主题请查收！</Tips>
-                <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
-                    {
-                        contentList.map((item: any, i: number) => (
-                            <div className="list-item" key={i} >
-                                <div className="item-top">
-                                    <div className="top-portrait" style={{ backgroundImage: `url(${item.author.avatar_url})`}} onClick = {()=>{history.push(`/user/${item.author.loginname}`)}}></div>
-                                    <h3>{item.author.loginname}</h3>
-                                    <span className="top-time">{getRelativeTime(item.create_at)}</span>
-                                    <span className="top-sizebox">{getThemeType(item.tab)}</span>
+            <div>
+                <header className="header">
+                    <div className="back">
+                        <em className="iconfont icon-fanhui"></em>
+                    </div>
+                    <div className="wrap">
+                        <span style={{ background: 'goldenrod' }}></span>
+                        <em>cnode-js</em>
+                    </div>
+                    <div className="other">
+                        <em className="iconfont icon-shoucang"></em>
+                    </div>
+                </header>
+                {/* <Tips lei="msg-tips" isShow={msgTips} >新增10条主题请查收！</Tips> */}
+                <section className="main-content">
+                    <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
+                        {
+                            contentList.map((item: any, i: number) => (
+                                <div className="list-item"  key={i}>
+                                    <div className="item-header">
+                                        <div>
+                                            <span className="portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }} onClick={() => { history.push(`/user/${item.author.loginname}`) }}></span>
+                                            <span className="name">{item.author.loginname}</span>
+                                        </div>
+                                        <div>
+                                            <span className="classify">{getThemeType(item.tab)}</span>
+                                            <span className="release-date">{getRelativeTime(item.create_at)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="item-content" onClick={() => { this.handleSeeComment(item.id) }}>
+                                        <p>{item.title}</p>
+                                    </div>
+                                    <div className="item-nav">
+                                        <div className="item-n-chakan">
+                                            <span className="iconfont icon-yanjing"></span>
+                                            <span>{item.visit_count}</span>
+                                        </div>
+                                        <div className="item-n-msg">
+                                            <span className="iconfont icon-dkw_xiaoxi"></span>
+                                            <span>{item.reply_count}</span>
+                                        </div>
+                                        <div className="item-n-date">
+                                            <span className="iconfont icon-shijian00"></span>
+                                            <span>{getRelativeTime(item.last_reply_at)}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="item-content" onClick = {()=>{this.handleSeeComment(item.id)}}>
-                                    <p>{item.title}</p>
-                                </div>
-                                <ul className="item-operation">
-                                    <li>
-                                        <a href="">
-                                            <em className="iconfont icon-yanjing"></em>
-                                            <em>{item.visit_count}</em>
-                                        </a></li>
-                                    <li className="two">
-                                        <a href="">
-                                            <em className="iconfont icon-dkw_xiaoxi"></em>
-                                            <em>{item.reply_count}</em>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <em className="iconfont icon-shijian00"></em>
-                                            <em>{getRelativeTime(item.last_reply_at)}</em>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        ))
-                    }
-                </Scroll>
+                            ))
+                        }
+                    </Scroll>
+                </section>
             </div>
         )
     }

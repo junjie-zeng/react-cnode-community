@@ -7,15 +7,15 @@ import { getThemeType, getRelativeTime } from '../../assets/js/tools'
 interface Props {
     classifyContentList: Array<any>
     getClassifyContent: Function
-    refreshTips:boolean
-    history:any
+    refreshTips: boolean
+    history: any
 }
 interface State {
     Tablist: Array<any>
     limit: number
     tab: string
-    page:number
-   
+    page: number
+
 }
 class Classify extends Component<Props, State> {
     constructor(props: Props) {
@@ -30,7 +30,7 @@ class Classify extends Component<Props, State> {
             ],
             limit: 5,
             tab: 'good',
-            page:1
+            page: 1
         }
     }
 
@@ -68,54 +68,55 @@ class Classify extends Component<Props, State> {
         getClassifyContent(page, limit)
     }
 
-    handleSeeComment(id:string){
+    handleSeeComment(id: string) {
         this.props.history.push(`/detail/${id}`)
     }
 
 
     render() {
         const { Tablist } = this.state
-        const { classifyContentList,refreshTips } = this.props
+        const { classifyContentList, refreshTips } = this.props
         return (
-            <div className="classif-box">
+            <div className="classify-box">
                 <Tab Tablist={Tablist} switchTab={this.switchTab} />
-                <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
-                    {
-                        classifyContentList.map((item: any, index: number) => (
-                            <div className="list-item" key={index}>
-                                <div className="item-top">
-                                    <div className="top-portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></div>
-                                    <h3>{item.author.loginname}</h3>
-                                    <span className="top-time">{getRelativeTime(item.create_at)}</span>
-                                    <span className="top-sizebox">{getThemeType(item.tab)}</span>
+                <div className="classify-wrap">
+                    <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
+                        {
+                            classifyContentList.map((item: any, index: number) => (
+                                <div className="list-item">
+                                    <div className="item-header">
+                                        <div>
+                                            <span className="portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></span>
+                                            <span className="name">{item.author.loginname}</span>
+                                        </div>
+                                        <div>
+                                            <span className="classify">{getRelativeTime(item.create_at)}</span>
+                                            <span className="release-date">{getThemeType(item.tab)}</span>
+                                        </div>
+                                    </div>
+                                    <div className="item-content" onClick={() => { this.handleSeeComment(item.id) }}>
+                                        <p>{item.title}</p>
+                                    </div>
+                                    <div className="item-nav">
+                                        <div className="item-n-chakan">
+                                            <span className="iconfont icon-yanjing"></span>
+                                            <span>{item.visit_count}</span>
+                                        </div>
+                                        <div className="item-n-msg">
+                                            <span className="iconfont icon-dkw_xiaoxi"></span>
+                                            <span>{item.reply_count}</span>
+                                        </div>
+                                        <div className="item-n-date">
+                                            <span className="iconfont icon-shijian00"></span>
+                                            <span>{getRelativeTime(item.last_reply_at)}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="item-content" onClick = {()=>{this.handleSeeComment(item.id)}}>
-                                    <p>{item.title}</p>
-                                </div>
-                                <ul className="item-operation">
-                                    <li>
-                                        <a href="javascript:;">
-                                            <em className="iconfont icon-yanjing"></em>
-                                            <em>{item.visit_count}</em>
-                                        </a>
-                                    </li>
-                                    <li className="two">
-                                        <a href="javascript:;">
-                                            <em className="iconfont icon-dkw_xiaoxi"></em>
-                                            <em>{item.reply_count}</em>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <em className="iconfont icon-shijian00"></em>
-                                            <em>{getRelativeTime(item.last_reply_at)}</em>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        ))
-                    }
-                </Scroll>
+                            ))
+                        }
+                    </Scroll>
+                </div>
+
             </div>
         )
     }
@@ -123,7 +124,7 @@ class Classify extends Component<Props, State> {
 const mapStateToProps = (state: any) => {
     return {
         classifyContentList: state.content.classifyContentList,
-        refreshTips:state.content.refreshTips
+        refreshTips: state.content.refreshTips
     }
 }
 export default connect(mapStateToProps, { getClassifyContent })(Classify)

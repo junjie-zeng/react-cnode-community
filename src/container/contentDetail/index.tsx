@@ -4,11 +4,11 @@ import Scroll from '../../baseUi/Scroll'
 import { getDetail } from '../../store/action'
 interface Props {
     match: any
-    history:any
+    history: any
     getDetail: Function
     detail: any
-    refreshTips:boolean
-    
+    refreshTips: boolean
+
 }
 
 interface State {
@@ -30,7 +30,7 @@ class ContentDetail extends React.Component<Props, State>{
         this._loadingDetail()
     }
 
-    _loadingDetail(){
+    _loadingDetail() {
         const { getDetail } = this.props
         const { match } = this.props
         const id = match.params.id
@@ -47,7 +47,7 @@ class ContentDetail extends React.Component<Props, State>{
             return
         }
 
-        isContent = flag ? false : true
+        isContent = flag ? true : false
 
         this.setState({
             isContent,
@@ -67,79 +67,102 @@ class ContentDetail extends React.Component<Props, State>{
 
     render() {
         const { isContent, commentContent } = this.state
-        const { detail,refreshTips } = this.props
-        //console.log(detail)
+        const { detail, refreshTips } = this.props
+        console.log(isContent)
         return (
-            <div className={isContent ? ' detail-box' : 'comment-box detail-box detail-rotate'}>
+            <div className = {isContent ?'detail-wrapper':'detail-rotate detail-wrapper'} >
                 {
                     isContent ?
-                        <div className="detail-content">
-                            <div className="header">
-                                <div className="header-left" ><em className="iconfont icon-fanhui" onClick = {()=>{ this.props.history.go(-1)}}></em></div>
-                                <div className="header-center">内容</div>
-                                <div className="header-right"><em className="iconfont icon-shoucang"></em></div>
-                            </div>
-                            <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
-                                <div style={{ padding: '10px' }} dangerouslySetInnerHTML={{ __html: detail.content }}></div>
-                            </Scroll>
-                            <div className="comment-release">
-                                <input type="text" placeholder="快来评论" value={commentContent} onChange={(event) => { this.handleChange('commentContent', event.target.value) }} />
-                                <button onClick={() => { this.handleDetailSwitch(true) }}>
-                                    {commentContent ? '发布评论' : '查看评论'}
-                                </button>
-                            </div>
-                        </div>
-                        :
-                        <div className="detail-comment">
-                            <div className="header">
-                                <div className="header-left" ><em className="iconfont icon-fanhui"></em></div>
-                                <div className="header-center">评论</div>
-                                <div className="header-right" style={{ visibility: 'hidden' }}><em className="iconfont icon-shoucang"></em></div>
-                            </div>
-                            <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
-                                <div className="comment-title">
-                                    <div>
-                                        <span>评论.11</span>
+                        <div >
+                            <header className="header">
+                                <div className="back" onClick={() => { this.props.history.go(-1) }}>
+                                    <em className="iconfont icon-fanhui"></em>
+                                </div>
+                                <div className="wrap">
+                                    <span style={{ background: 'goldenrod' }}></span>
+                                    <em>评论</em>
+                                </div>
+                                <div className="other">
+                                    <em className="iconfont icon-shoucang"></em>
+                                </div>
+                            </header>
+                            <div className='detail'>
+                                <div className="comment-content">
+                                    <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
+                                        <div className="comment-count">
+                                            <h4>评论. 4</h4>
+                                        </div>
+                                        {
+                                            detail.replies && detail.replies.map((item: any, index: number) => (
+                                                <div className="comment-item" key={item.id}>
+                                                    <div className="comment-wrap">
+                                                        <div>
+                                                            <div className="touxiang" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></div>
+                                                            <span className="name">{item.author.loginname}</span>
+                                                        </div>
+                                                        <div>
+                                                            <em className="iconfont icon-shoucang"></em>
+                                                            <em>0</em>
+                                                        </div>
+                                                    </div>
+                                                    <div className="comment">
+                                                        <p dangerouslySetInnerHTML={{ __html: item.content }}></p>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </Scroll>
+
+                                    <div className="operation">
+                                        <div>
+                                            <input type="text" value={commentContent} onChange={(event) => { this.handleChange('commentContent', event.target.value) }} placeholder="快来评论" />
+                                        </div>
+                                        <div>
+                                            <button onClick={() => { this.handleDetailSwitch(false) }}>
+                                                {commentContent ? '发布评论' : '去到主题'}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="comment-list" >
-                                    {
-                                        detail.replies && detail.replies.map((item: any, index: number) => (
+                            </div>
 
-                                            <div className="comment-item" key={item.id}>
-                                                <div className="item-wrapper">
-                                                    <div className="wrapper-portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></div>
-                                                    <div className="wrapper-name">
-                                                        <span>{item.author.loginname}</span>
-                                                    </div>
-                                                    <div className="wrapper-give ">
-                                                        <em className="iconfont icon-ziyuan"></em>
-                                                        <em>1</em>
-                                                    </div>
-                                                </div>
-                                                <div className="item-content">
-                                                    <p dangerouslySetInnerHTML={{ __html: item.content }}></p>
-                                                </div>
-                                            </div>
-
-                                        ))
-                                    }
+                        </div>
+                        :
+                        <div className="content-box" >
+                            <header className="header">
+                                <div className="back" onClick={() => { this.props.history.go(-1) }}>
+                                    <em className="iconfont icon-fanhui"></em>
                                 </div>
+                                <div className="wrap">
+                                    <span style={{ background: 'goldenrod' }}></span>
+                                    <em>内容</em>
+                                </div>
+                                <div className="other">
+                                    <em className="iconfont icon-shoucang"></em>
+                                </div>
+                            </header>
+                            <div className='detail'>
+                                <div className="detail-content">
+                                    <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
+                                        <div style={{ padding: '10px' }} dangerouslySetInnerHTML={{ __html: detail.content }}></div>
+                                    </Scroll>
 
-                            </Scroll>
-                            <div className="comment-release">
-                                <input type="text" placeholder="快来评论" value={commentContent} onChange={(event) => { this.handleChange('commentContent', event.target.value) }} />
-                                <button onClick={() => { this.handleDetailSwitch(false) }}>
-                                    {commentContent ? '发布评论' : '去到主题'}
-                                </button>
+                                    <div className="operation">
+                                        <div>
+                                            <input type="text" value={commentContent} onChange={(event) => { this.handleChange('commentContent', event.target.value) }} placeholder="快来评论" />
+                                        </div>
+                                        <div>
+                                            <button onClick={() => { this.handleDetailSwitch(true) }}>
+                                                {commentContent ? '发布评论' : '查看评论'}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                 }
-
-
-
             </div>
-
         )
     }
 }
@@ -149,7 +172,7 @@ class ContentDetail extends React.Component<Props, State>{
 const mapStateToProps = (state: any) => {
     return {
         detail: state.content.detail,
-        refreshTips:state.content.refreshTips
+        refreshTips: state.content.refreshTips
     }
 }
 

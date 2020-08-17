@@ -8,11 +8,18 @@ interface Props {
 
 function Header(props: Props) {
     return (
-        <div className="header">
-            <div className="header-left"><em className="iconfont icon-fanhui"></em></div>
-            <div className="header-center">{props.center}</div>
-            <div className="header-right"><em className="iconfont icon-qita"></em></div>
-        </div>
+        <header className="header">
+            <div className="back">
+                <em className="iconfont icon-fanhui"></em>
+            </div>
+            <div className="wrap">
+                <span style={{ background: 'goldenrod' }}></span>
+                <em>cnode-js</em>
+            </div>
+            <div className="other">
+                <em className="iconfont icon-shoucang"></em>
+            </div>
+        </header>
 
     )
 }

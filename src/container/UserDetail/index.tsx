@@ -7,7 +7,7 @@ interface Props {
     userInfo: any
     match: any
     getUserDetail: Function
-    history:any
+    history: any
 }
 interface State { }
 class UserDetail extends React.Component<Props, State> {
@@ -29,38 +29,51 @@ class UserDetail extends React.Component<Props, State> {
 
         console.log('userinfo', userInfo)
         return (
-            <div className="my-info-box">
-                <div className="header">
-                    <div className="header-left"  onClick = {()=>{ this.props.history.go(-1)}}><em className="iconfont icon-fanhui"></em></div>
-                    <div className="header-center">{userInfo.loginname}</div>
-                    <div className="header-right"><em className="iconfont icon-qita"></em></div>
-                </div>
-                <div>
-                    <div className="wrapper">
-                        <div className="header-protrait" style={{ backgroundImage: `url(${userInfo.avatar_url})` }}></div>
+            <div>
+                <header className="header">
+                    <div className="back" onClick={() => { this.props.history.go(-1) }}>
+                        <em className="iconfont icon-fanhui"></em>
                     </div>
-                    <div className="msg-info">
-                        <a href="javascript:void(0);" className="active">最近主题</a>
-                        <a href="javascript:void(0);">最近评论</a>
+                    <div className="wrap">
+                        {/* <span style={{ background: 'goldenrod' }}></span> */}
+                        <em>{userInfo.loginname}</em>
                     </div>
-                </div>
-                <Scroll handleTouchEnd={()=>{}} refreshTips={false}>
+                    <div className="other">
+                        <em className="iconfont icon-shoucang"></em>
+                    </div>
+                </header>
+                <div className="user-his-comment">
 
-                    {
-                        userInfo && userInfo.recent_replies && userInfo.recent_replies.map((item: any, index: number) => (
-                            <div className="list-item" key={index}>
-                                <div className="item-top">
-                                    <div className="top-portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></div>
-                                    <h3>{item.author.loginname}</h3>
-                                    <span className="top-time">{getRelativeTime(item.last_reply_at)}</span>
-                                </div>
-                                <div className="item-content">
-                                    <p>{item.title}</p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </Scroll>
+                    <div className="user-bg">
+                        <div className="user-touxiang" style={{ backgroundImage: `url(${userInfo.avatar_url})` }}></div>
+                    </div>
+                    <div className="comment-tab">
+                        <div className="active">最近主题</div>
+                        <div>最近评论</div>
+                    </div>
+                    <div className="comment-tab-box">
+                        <Scroll handleTouchEnd={() => { }} refreshTips={false}>
+                            {
+                                userInfo && userInfo.recent_replies && userInfo.recent_replies.map((item: any, index: number) => (
+                                    <div className="comment-item" key={index}>
+                                        <div className="comment-wrap">
+                                            <div>
+                                                <div className="touxiang" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></div>
+                                                <span className="name">{item.author.loginname}</span>
+                                            </div>
+                                            <div>
+                                                <em>{getRelativeTime(item.last_reply_at)}</em>
+                                            </div>
+                                        </div>
+                                        <div className="comment">
+                                            <p>{item.title}</p>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </Scroll>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -7,12 +7,12 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 
 interface Props {
-    navList:Array<any>
+    navList: Array<any>
 }
 
 class NavFooter extends React.Component<any, any> {
 
-    
+
     handleNav = (pathname: string) => {
         // console.log(pathname)
         // console.log(this.props.history)
@@ -23,16 +23,16 @@ class NavFooter extends React.Component<any, any> {
         const { pathname } = this.props.location
         const { navList } = this.props
         return (
-            <div className="nav">
+            <nav className="nav">
                 {
-                    navList.map((item:any, index:number) => (
+                    navList.map((item: any, index: number) => (
                         <div key={index} className={pathname == item.path ? 'active' : ''} onClick={() => { this.handleNav(item.path) }}>
-                            <span className={item.icon}></span>
-                            <span>{item.text}</span>
+                            <i className={item.icon}></i>
+                            <i>{item.text}</i>
                         </div>
                     ))
                 }
-            </div>
+            </nav>
         )
     }
 }

@@ -5,11 +5,11 @@ import BScroll from 'better-scroll'
 interface Props {
     refreshTips: boolean
     handleTouchEnd: Function
-    children:any
+    children: any
 }
 
-interface State{
-    dropDownRefresh:boolean
+interface State {
+    dropDownRefresh: boolean
 }
 class Scroll extends React.Component<Props, State>{
     constructor(props: Props) {
@@ -51,8 +51,8 @@ class Scroll extends React.Component<Props, State>{
         const { children, refreshTips } = this.props
         const { dropDownRefresh } = this.state
         return (
-            <div className="list-box BScroll">
-                <div>
+            <div className="scroll-box wrapper BScroll">
+                <div className="scroll-wrap-list" style = {{paddingBottom:'2rem'}}>
                     <Tips lei="refresh-tips" isShow={dropDownRefresh} >释放即可刷新</Tips>
                     <Tips lei="refresh-tips" isShow={refreshTips} >加载中...</Tips>
                     {children}

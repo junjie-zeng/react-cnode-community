@@ -5,35 +5,30 @@ class Msg extends Component {
     render() {
         return (
             <div className="msg-box">
-                <div className="msg-info">
-                    <a href="javascript:;" className="active">未读消息</a>
-                    <a href="javascript:;">已读消息</a>
+                <div className="comment-tab">
+                    <div className="active">未读消息</div>
+                    <div>已读消息</div>
                 </div>
-                <div className="msg-content">
-                    暂无消息
-                </div>
-                {/* <div className="list-box">
-                    <div className="list-item">
-                        <div className="item-top">
-                            <div className="top-portrait"></div>
-                            <h3>JAck</h3>
-                            <span className="top-time">8 天前</span>
-                        </div>
-                        <div className="item-content">
-                            <p>hello word</p>
+                <div className="comment-tab-box">
+                    <div className="scroll-box wrapper">
+                        <div className="scroll-wrap-list">
+                            <div className="comment-item">
+                                <div className="comment-wrap">
+                                    <div>
+                                        <div className="touxiang"></div>
+                                        <span className="name">junjie-zeng</span>
+                                    </div>
+                                    <div>
+                                        <em>1年前</em>
+                                    </div>
+                                </div>
+                                <div className="comment">
+                                    <p>我和我的小伙伴都惊呆了</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="list-item">
-                        <div className="item-top">
-                            <div className="top-portrait"></div>
-                            <h3>JAck</h3>
-                            <span className="top-time">8 天前</span>
-                        </div>
-                        <div className="item-content">
-                            <p>hello word</p>
-                        </div>
-                    </div>
-                </div> */}
+                </div>
             </div>
         )
     }
