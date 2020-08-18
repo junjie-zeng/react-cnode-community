@@ -166,6 +166,7 @@ input, button {
   /* box-shadow: 0 0 .5rem 0 #888; */
   border-bottom: solid .1rem #f3f3f3;
   background: #fff;
+  font-size: 1.6rem;
 }
 
 .header>div {
@@ -178,6 +179,11 @@ input, button {
   width: 15%;
   /* padding-left: 10px; */
   text-align: center;
+  color: #398bff;
+}
+
+.header .back .iconfont{
+  font-size: 2rem;
 }
 
 .header .wrap {
@@ -200,6 +206,10 @@ input, button {
 .header .other {
   width: 15%;
   text-align: center;
+  color: #398bff;
+}
+.header .other .iconfont{
+  font-size: 2rem;
 }
 
 /* 首页 */
@@ -478,7 +488,7 @@ input, button {
 .user-bg {
   position: relative;
   height: 20rem;
-  background: grey;
+  background: url(./assets/image/bj-1.jpg) no-repeat;
 }
 
 .user-touxiang {
@@ -488,7 +498,7 @@ input, button {
   transform: translate(-50%, -50%);
   width: 8rem;
   height: 8rem;
-  background: pink;
+  background: #f3f3f3;
   border-radius: 50%;
 }
 
