@@ -83,7 +83,7 @@ class Classify extends Component<Props, State> {
                     <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
                         {
                             classifyContentList.map((item: any, index: number) => (
-                                <div className="list-item">
+                                <div className="list-item" key = {index}>
                                     <div className="item-header">
                                         <div>
                                             <span className="portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></span>
