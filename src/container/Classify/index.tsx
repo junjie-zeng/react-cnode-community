@@ -90,8 +90,8 @@ class Classify extends Component<Props, State> {
                                             <span className="name">{item.author.loginname}</span>
                                         </div>
                                         <div>
-                                            <span className="classify">{getRelativeTime(item.create_at)}</span>
-                                            <span className="release-date">{getThemeType(item.tab)}</span>
+                                            <span className="classify">{getThemeType(item.tab)}</span>
+                                            <span className="release-date">{getRelativeTime(item.create_at)}</span>
                                         </div>
                                     </div>
                                     <div className="item-content" onClick={() => { this.handleSeeComment(item.id) }}>
