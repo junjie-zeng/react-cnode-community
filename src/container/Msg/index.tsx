@@ -1,14 +1,37 @@
 import React, { Component } from 'react'
+import CommentTab from '../../components/CommentTab'
 
+interface Props{
 
-class Msg extends Component {
+}
+interface State{
+    tabs:Array<any>
+}
+class Msg extends Component<Props,State> {
+
+    constructor(props: Props) {
+        super(props)
+        this.state = {
+            tabs: [
+                { title: '未读消息', active: true },
+                { title: '已读消息', active: false }
+            ]
+        }
+    }
+    
+    _commentSwitch = (index: number,tabs:Array<any>) => {
+        // let { isRecentTopics } = this.state
+         // 0 最近主题 1 最近评论
+        // isRecentTopics = index ?false : true
+        this.setState({tabs})
+        
+    }
+
     render() {
+        const {tabs} = this.state
         return (
             <div className="msg-box">
-                <div className="comment-tab">
-                    <div className="active">未读消息</div>
-                    <div>已读消息</div>
-                </div>
+                <CommentTab tabs ={tabs} commentSwitch = {this._commentSwitch}/>
                 <div className="comment-tab-box">
                     <div className="scroll-box wrapper">
                         <div className="scroll-wrap-list">
