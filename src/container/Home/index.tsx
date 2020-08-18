@@ -63,18 +63,7 @@ class Home extends React.Component<Props, State> {
         const { loading, refreshTips, contentList, msgTips, history } = this.props
         return (
             <div>
-                <header className="header">
-                    <div className="back">
-                        <em className="iconfont icon-fanhui"></em>
-                    </div>
-                    <div className="wrap">
-                        <span style={{ background: 'goldenrod' }}></span>
-                        <em>cnode-js</em>
-                    </div>
-                    <div className="other">
-                        <em className="iconfont icon-shoucang"></em>
-                    </div>
-                </header>
+                <Header title = 'CNode.js中文社区' icon2 = "icon-github"/>
                 {/* <Tips lei="msg-tips" isShow={msgTips} >新增10条主题请查收！</Tips> */}
                 <section className="main-content">
                     <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>

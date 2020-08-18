@@ -1,22 +1,11 @@
 import React, { Component } from 'react'
-
+import Header from '../../components/Header'
 
 class My extends Component {
     render() {
         return (
             <div>
-                <header className="header">
-                    <div className="back">
-                        <em className="iconfont icon-fanhui"></em>
-                    </div>
-                    <div className="wrap">
-                        {/* <span style={{ background: 'goldenrod' }}></span> */}
-                        <em>用户中心</em>
-                    </div>
-                    <div className="other">
-                        <em className="iconfont icon-shoucang"></em>
-                    </div>
-                </header>
+                <Header title = "用户中心"/>
                 <div className="my-box">
                     <div className="user-bg">
                         <div className="user-touxiang"></div>

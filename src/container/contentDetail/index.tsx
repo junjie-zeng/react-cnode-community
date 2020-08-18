@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Scroll from '../../baseUi/Scroll'
 import { getDetail } from '../../store/action'
+import Header from '../../components/Header'
 interface Props {
     match: any
     history: any
@@ -68,24 +69,14 @@ class ContentDetail extends React.Component<Props, State>{
     render() {
         const { isContent, commentContent } = this.state
         const { detail, refreshTips } = this.props
-        console.log(isContent)
+        console.log(detail)
         return (
             <div className = {isContent ?'detail-wrapper':'detail-rotate detail-wrapper'} >
                 {
                     isContent ?
                         <div >
-                            <header className="header">
-                                <div className="back" onClick={() => { this.props.history.go(-1) }}>
-                                    <em className="iconfont icon-fanhui"></em>
-                                </div>
-                                <div className="wrap">
-                                    <span style={{ background: 'goldenrod' }}></span>
-                                    <em>评论</em>
-                                </div>
-                                <div className="other">
-                                    <em className="iconfont icon-shoucang"></em>
-                                </div>
-                            </header>
+                           
+                            <Header backFun = {()=>{this.props.history.go(-1)}} title = "评论"  />
                             <div className='detail'>
                                 <div className="comment-content">
                                     <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
@@ -129,18 +120,7 @@ class ContentDetail extends React.Component<Props, State>{
                         </div>
                         :
                         <div className="content-box" >
-                            <header className="header">
-                                <div className="back" onClick={() => { this.props.history.go(-1) }}>
-                                    <em className="iconfont icon-fanhui"></em>
-                                </div>
-                                <div className="wrap">
-                                    <span style={{ background: 'goldenrod' }}></span>
-                                    <em>内容</em>
-                                </div>
-                                <div className="other">
-                                    <em className="iconfont icon-shoucang"></em>
-                                </div>
-                            </header>
+                             <Header backFun = {()=>{this.props.history.go(-1)}} title = {detail.author.loginname} portrait  = {detail.author.avatar_url} icon2 = "icon-shoucang" />
                             <div className='detail'>
                                 <div className="detail-content">
                                     <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
