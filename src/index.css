@@ -105,7 +105,7 @@ img, a {
 
 .msg-tips {
   position: absolute;
-  top: 5rem;
+  top: 4rem;
   z-index: 1;
   height: 3rem;
   background: #3388ff;
