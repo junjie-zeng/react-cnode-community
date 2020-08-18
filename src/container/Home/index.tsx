@@ -61,15 +61,16 @@ class Home extends React.Component<Props, State> {
 
     render() {
         const { loading, refreshTips, contentList, msgTips, history } = this.props
+        const { limit } = this.state
         return (
             <div>
-                <Header title = 'CNode.js中文社区' icon2 = "icon-github"/>
-                {/* <Tips lei="msg-tips" isShow={msgTips} >新增10条主题请查收！</Tips> */}
+                <Header title='CNode.js中文社区' icon2="icon-github" />
+                <Tips lei="msg-tips" isShow={msgTips} >新增 {limit} 条主题请查收！</Tips>
                 <section className="main-content">
                     <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
                         {
                             contentList.map((item: any, i: number) => (
-                                <div className="list-item"  key={i}>
+                                <div className="list-item" key={i}>
                                     <div className="item-header">
                                         <div>
                                             <span className="portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }} onClick={() => { history.push(`/user/${item.author.loginname}`) }}></span>

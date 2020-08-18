@@ -1,6 +1,6 @@
 import React from 'react'
 interface Props {
-    children: string,
+    children: any,
     isShow: boolean,
     lei: string
 }
