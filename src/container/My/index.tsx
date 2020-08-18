@@ -1,11 +1,33 @@
 import React, { Component } from 'react'
 import Header from '../../components/Header'
 
-class My extends Component {
+interface Props {
+    history: any
+}
+
+interface State {
+}
+//容器
+class My extends Component<Props, State> {
+
+
+
+
+    // 退出
+    handleLoginOut = () => {
+        localStorage.setItem('token', '')
+        localStorage.setItem('user', '')
+        this.props.history.push('/login')
+    }
+
+
+
     render() {
+        let token = localStorage.getItem('token')
+        let user = localStorage.getItem('user')
         return (
             <div>
-                <Header title = "用户中心"/>
+                <Header title="用户中心" />
                 <div className="my-box">
                     <div className="user-bg">
                         <div className="user-touxiang"></div>
@@ -25,7 +47,14 @@ class My extends Component {
                         </li>
                     </ul>
                     <div className="login-out">
-                        <button>退出</button>
+                        {
+                            token ?
+                                <button className='login-out-btn' onClick={this.handleLoginOut}>退出</button>
+                                :
+                                <button className='login-btn' onClick={() => { this.props.history.push('/login') }}>登录</button>
+
+                        }
+
                     </div>
                 </div>
             </div>

@@ -572,7 +572,7 @@ input, button {
   margin-top: 2rem;
 }
 
-.login-out button {
+.login-out-btn {
   width: 100%;
   height: 4rem;
   background: #ff4444;
@@ -611,7 +611,7 @@ input, button {
   font-size: 1.6rem;
 }
 
-.login-wrap button {
+.login-btn {
   width: 100%;
   height: 4rem;
   background: #44bb00;

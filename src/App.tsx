@@ -1,7 +1,7 @@
 import React from 'react';
 //renderRoutes 读取路由配置转化为 Route 标签
 import { renderRoutes } from 'react-router-config'
-import { Route, Switch,withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 // import routes from './routes/index'
 
 import Home from './container/Home'
@@ -11,6 +11,7 @@ import My from './container/My'
 import NavFooter from './components/Nav-footer'
 import ContentDetail from './container/ContentDetail'
 import UserDetail from './container/UserDetail'
+import Login from './container/Login'
 class App extends React.Component<any>{
   navList = [
     {
@@ -38,7 +39,7 @@ class App extends React.Component<any>{
 
   // function App() {
   render() {
-    const {navList} = this
+    const { navList } = this
     const path = this.props.location.pathname;
     //得到当前的nav,可能没有
     const currentNav = navList.find(nav => nav.path == path);
@@ -52,11 +53,12 @@ class App extends React.Component<any>{
           <Route path='/msg' component={Msg}></Route>
           <Route path='/classify' component={Classify}></Route>
           <Route path='/my' component={My}></Route>
+          <Route path='/login' component={Login}></Route>
           <Route path='/detail/:id' component={ContentDetail}></Route>
           <Route path='/user/:username' component={UserDetail}></Route>
         </Switch>
-        {currentNav ? <NavFooter navList = {navList}/> : null}
-        
+        {currentNav ? <NavFooter navList={navList} /> : null}
+
       </div>
     );
   }
