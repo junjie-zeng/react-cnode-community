@@ -14,13 +14,13 @@ class My extends Component {
                         <li>
                             <div>更多信息</div>
                             <div>
-                                <em className="iconfont icon-fanhui"></em>
+                                <em className="iconfont icon-jiantou"></em>
                             </div>
                         </li>
                         <li>
                             <div>评论加尾</div>
                             <div>
-                                <em className="iconfont icon-fanhui"></em>
+                                <em className="iconfont icon-kaiguanguan"></em>
                             </div>
                         </li>
                     </ul>
