@@ -49,6 +49,7 @@ class Classify extends Component<Props, State> {
         // console.log('tab..', tab)
         getClassifyContent(1, limit, tab)
         this._updateTabList(index)
+        this.setState({tab})
     }
 
     _updateTabList(index: number) {
@@ -60,12 +61,12 @@ class Classify extends Component<Props, State> {
     }
 
     handleTouchEnd = () => {
-        let { page, limit } = this.state
+        let { page, limit,tab } = this.state
         const { getClassifyContent } = this.props
         this.setState({
             page: ++page,
         })
-        getClassifyContent(page, limit)
+        getClassifyContent(page, limit,tab)
     }
 
     handleSeeComment(id: string) {
