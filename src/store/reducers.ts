@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { Action } from '../interface'
-import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS } from './action-type'
+import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS,GET_MSG_SUCCESS } from './action-type'
 
 
 
@@ -36,8 +36,9 @@ const content = (state = contentState, action: Action) => {
     }
 }
 
+// 用户信息
 const userState = {
-    userInfo: {}, // 用户信息
+    userInfo: {}, 
 }
 
 const user = (state = userState, action: Action) => {
@@ -49,8 +50,25 @@ const user = (state = userState, action: Action) => {
     }
 }
 
+// 消息
+const msgState = {
+    msgInfo: {}
+}
+
+const msg = (state = msgState, action: Action) => {
+    switch (action.type) {
+        case GET_MSG_SUCCESS:
+            return { ...state, msgInfo: action.data }
+        default:
+            return state
+    }
+}
+
+
+
 
 export default combineReducers({
     content,
-    user
+    user,
+    msg
 })

@@ -35,6 +35,10 @@ img, a {
   -webkit-touch-callout: none;
 }
 
+a{
+  text-decoration:none;
+}
+
 /* css3转换 */
 
 .detail-rotate {
@@ -101,6 +105,11 @@ img, a {
   100% {
     opacity: 0;
   }
+}
+
+.msg{
+  text-align: center;
+  line-height: 10rem;
 }
 
 .msg-tips {

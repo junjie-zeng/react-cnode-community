@@ -19,5 +19,9 @@ export const getContentDetailRequest = (id) => ajax(`${_PATH}/topic/${id}`)
 export const getUserDetailRequest = (username) => ajax(`${_PATH}/user/${username}`)
 // https://cnodejs.org/api/v1/user/Q-Angelo
 
+// 获取消息
+// https://cnodejs.org/api/v1/messages?accesstoken=xxxx
+export const getMsgRequest = (accesstoken)=>ajax(`${_PATH}/messages?accesstoken=${accesstoken}`)
 // 效验token
 export const verifyTokenRequest = (accesstoken) => ajax(`${_PATH}/accesstoken`, { accesstoken }, 'POST')
+

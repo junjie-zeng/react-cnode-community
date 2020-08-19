@@ -1,5 +1,5 @@
-import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest } from '../api'
-import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS } from './action-type'
+import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest } from '../api'
+import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS ,GET_MSG_SUCCESS} from './action-type'
 import { time } from 'console'
 
 
@@ -14,7 +14,7 @@ const changeLoading = (data: boolean) => ({ type: LOADING, data })
 const changeRefreshTips = (data: boolean) => ({ type: REFRESHTIPS, data })
 const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
 const changeDetail = (data: any) => ({ type: GET_CONTENT_DETAIL_SUCCESS, data })
-
+const changeMsg = (data:any) =>({type:GET_MSG_SUCCESS,data})
 // 修改用户信息
 const changeUserDetail = (data: any) => ({ type: GET_USERINFO_SUCCESS, data })
 
@@ -110,20 +110,35 @@ export const getUserDetail = (username: string) => {
     }
 }
 
+
+// 获取消息 getMsgRequest
+export const getMsg = (token: string) => {
+    return async (dispatch:any) => {
+        try{
+            let res:any = await getMsgRequest(token)
+            let data = res.data
+            console.log('getMsg res...',data.data)
+            dispatch(changeMsg(data.data))
+        }catch(err){
+            console.log('getMsg err...',err)
+        }
+    }
+}
+
 // 效验token
-export const setToken = (token: string,callback:Function) => {
+export const setToken = (token: string, callback: Function) => {
     return async () => {
         try {
-            let res:any = await verifyTokenRequest(token)
+            let res: any = await verifyTokenRequest(token)
             let data = res.data
             // 本地存储
             localStorage.setItem('token', token)
-            localStorage.setItem('user',JSON.stringify(data))
+            localStorage.setItem('user', JSON.stringify(data))
             callback && callback(true)
-            console.log('setToken res...',data)
+            console.log('setToken res...', data)
         } catch (err) {
             callback && callback(false)
-            console.log('setToken...',err)
+            console.log('setToken...', err)
         }
     }
 }
