@@ -6,7 +6,7 @@ import Tips from '../../components/Tips/Tips'
 import Header from '../../components/Header'
 import Scroll from '../../baseUi/Scroll'
 // 工具
-import { getThemeType, getRelativeTime } from '../../assets/js/tools'
+import { getThemeType, getRelativeTime ,getThemeColor} from '../../assets/js/tools'
 
 interface Props {
     getContent: Function,
@@ -77,7 +77,7 @@ class Home extends React.Component<Props, State> {
                                             <span className="name">{item.author.loginname}</span>
                                         </div>
                                         <div>
-                                            <span className="classify">{getThemeType(item.tab)}</span>
+                                            <span className="classify" style={{background:getThemeColor(item)}}>{getThemeType(item)}</span>
                                             <span className="release-date">{getRelativeTime(item.create_at)}</span>
                                         </div>
                                     </div>

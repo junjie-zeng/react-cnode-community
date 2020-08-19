@@ -8,7 +8,7 @@ interface Props {
 
 function Mask(props: Props) {
     const { mask } = props
-    const _style = { opacity: mask ? 1 : 0 ,zIndex:mask?5:0}
+    const _style = { opacity: mask ? 1 : 0 ,zIndex:mask?5:-5}
     return (
         <div className="mask" style={_style} onClick={() => { props.setMask(false) }} >
         </div >
