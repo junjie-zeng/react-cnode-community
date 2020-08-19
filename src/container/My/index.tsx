@@ -35,7 +35,7 @@ class My extends Component<Props, State> {
                         <div className="user-touxiang" style={{ backgroundImage: `url(${user.avatar_url})` }}></div>
                     </div>
                     <ul className="my-wrap">
-                        <li>
+                        <li onClick={() => { this.props.history.push(`/user/${user.loginname}`) }}>
                             <div>更多信息</div>
                             <div>
                                 <em className="iconfont icon-jiantou"></em>
