@@ -2,6 +2,23 @@ import 'moment/locale/zh-cn'
 
 
 
+// export const getThemeType = (tab: string) => {
+//     // console.log(tab)
+//     switch (tab) {
+//         case 'ask':
+//             return '问答'
+//         case 'share':
+//             return '分享'
+//         case 'job':
+//             return '招聘'
+//         case 'good':
+//             return '精华'
+//         default:
+//             return ''
+//     }
+// }
+
+
 export const getThemeType = (post: any) => {
     // console.log(tab)
     if (post.good == true) {
@@ -12,7 +29,7 @@ export const getThemeType = (post: any) => {
         return '问答'
     } else if (post.tab == 'share') {
         return '分享'
-    } else {
+    } else if(post.tab == 'job'){
         return '招聘'
     }
 }
