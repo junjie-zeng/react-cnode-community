@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { Action } from '../interface'
 import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS,GET_MSG_SUCCESS } from './action-type'
 
-
+import {MASK} from './action-type'
 
 
 
@@ -64,11 +64,26 @@ const msg = (state = msgState, action: Action) => {
     }
 }
 
+// otherState
+const otherState = {
+    mask:false
+}
+
+const other = (state = otherState,action:Action) =>{
+    switch(action.type){
+        case MASK:
+            return {...state,mask:action.data}
+        default:
+            return state
+    }
+}
+
 
 
 
 export default combineReducers({
     content,
     user,
-    msg
+    msg,
+    other
 })

@@ -21,3 +21,6 @@ export const MSG_TIPS= 'msg_tips'
 export const GET_USERINFO_SUCCESS = 'get_userinfo_success'
 
 
+export const MASK = 'mask'
+
+

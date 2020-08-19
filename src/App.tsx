@@ -12,6 +12,8 @@ import NavFooter from './components/Nav-footer'
 import ContentDetail from './container/ContentDetail'
 import UserDetail from './container/UserDetail'
 import Login from './container/Login'
+import Mask from './components/Mask'
+
 class App extends React.Component<any>{
   navList = [
     {
@@ -58,7 +60,7 @@ class App extends React.Component<any>{
           <Route path='/user/:username' component={UserDetail}></Route>
         </Switch>
         {currentNav ? <NavFooter navList={navList} /> : null}
-
+        <Mask/>
       </div>
     );
   }

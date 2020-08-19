@@ -1,6 +1,6 @@
 import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest } from '../api'
 import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS ,GET_MSG_SUCCESS} from './action-type'
-import { time } from 'console'
+import {MASK} from './action-type'
 
 
 /*
@@ -15,6 +15,13 @@ const changeRefreshTips = (data: boolean) => ({ type: REFRESHTIPS, data })
 const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
 const changeDetail = (data: any) => ({ type: GET_CONTENT_DETAIL_SUCCESS, data })
 const changeMsg = (data:any) =>({type:GET_MSG_SUCCESS,data})
+
+
+// 修改遮罩
+
+const changeMask = (data:boolean) =>({type:MASK,data})
+
+
 // 修改用户信息
 const changeUserDetail = (data: any) => ({ type: GET_USERINFO_SUCCESS, data })
 
@@ -140,5 +147,12 @@ export const setToken = (token: string, callback: Function) => {
             callback && callback(false)
             console.log('setToken...', err)
         }
+    }
+}
+
+// 遮罩
+export const setMask = (is:boolean) =>{
+    return (dispatch:any)=>{
+        dispatch(changeMask(is))
     }
 }

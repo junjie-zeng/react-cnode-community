@@ -23,7 +23,7 @@ function Header(props: Props) {
                 <span style={{ background: `url(${portrait})`, display: isPortrait }}></span>
                 <em>{title}</em>
             </div>
-            <div className="other" onClick={() => iconFun} style={{ visibility: isIcon2 }}>
+            <div className="other" onClick={iconFun} style={{ visibility: isIcon2 }}>
                 <em className={icon2 ? `iconfont ${icon2}` : `iconfont`}></em>
             </div>
         </header>

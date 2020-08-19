@@ -628,3 +628,34 @@ input, button {
   border-radius: .5rem;
   font-size: 1.6rem;
 }
+
+
+/* 查看 */
+.mask{
+  position:fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, .7);
+  z-index: 5;
+  transition: all 1s;
+}
+
+.see-opertion{
+  position: fixed;
+  width: 100%;
+  /* bottom: -8rem; */
+  bottom: 0;
+  background: #fff;
+  z-index: 6;
+  transition: .5s;
+  
+}
+.see-opertion li{
+  height: 4rem;
+  text-align: center;
+  line-height: 4rem;
+  border-bottom: solid .1rem #f3f3f3;
+  color:#414141;
+  font-size: 1.6rem;
+}
