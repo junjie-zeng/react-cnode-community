@@ -9,12 +9,15 @@ import ajax from './ajax';
 const _PATH = 'https://cnodejs.org/api/v1'
 
 // https://cnodejs.org/api/v1/topics?page=1&limit=2&markdown=false
-
-export const getContentListRequest = (page, limit, tab = '' ) => ajax(`${_PATH}/topics?page=${page}&limit=${limit}${tab ? `&tab=${tab}` : ''}`)
+// 获取内容列表
+export const getContentListRequest = (page, limit, tab = '') => ajax(`${_PATH}/topics?page=${page}&limit=${limit}${tab ? `&tab=${tab}` : ''}`)
 
 // https://cnodejs.org/api/v1/topic/5ee1ee83b703280f0bcb922a
-
+// 获取内容详情
 export const getContentDetailRequest = (id) => ajax(`${_PATH}/topic/${id}`)
-
-export const getUserDetailRequest = (username)=>ajax(`${_PATH}/user/${username}`)
+// 获取用户详情
+export const getUserDetailRequest = (username) => ajax(`${_PATH}/user/${username}`)
 // https://cnodejs.org/api/v1/user/Q-Angelo
+
+// 效验token
+export const verifyTokenRequest = (accesstoken) => ajax(`${_PATH}/accesstoken`, { accesstoken }, 'POST')

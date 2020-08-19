@@ -1,5 +1,5 @@
-import { getContentListRequest,getContentDetailRequest,getUserDetailRequest } from '../api'
-import { GET_CONTENT_SUCCESS,GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS,GET_USERINFO_SUCCESS } from './action-type'
+import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest } from '../api'
+import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS } from './action-type'
 import { time } from 'console'
 
 
@@ -16,7 +16,7 @@ const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
 const changeDetail = (data: any) => ({ type: GET_CONTENT_DETAIL_SUCCESS, data })
 
 // 修改用户信息
-const changeUserDetail = (data:any)=>({type:GET_USERINFO_SUCCESS,data})
+const changeUserDetail = (data: any) => ({ type: GET_USERINFO_SUCCESS, data })
 
 /*
     异步action
@@ -59,11 +59,11 @@ export const getContent = (page: number, limit: number) => {
 }
 
 // 根据分类获取内容
-export const getClassifyContent = (page: number, limit: number,tab:string) => {
+export const getClassifyContent = (page: number, limit: number, tab: string) => {
     return async (dispatch: any) => {
         try {
             dispatch(changeRefreshTips(true))
-            let res = await getContentListRequest(page, limit,tab)
+            let res = await getContentListRequest(page, limit, tab)
             let data = res.data
             console.log("getClassifyContent...", data.data)
             dispatch(changeRefreshTips(false))
@@ -77,19 +77,19 @@ export const getClassifyContent = (page: number, limit: number,tab:string) => {
 }
 
 // 获取详情
-export const getDetail = (id:string)=>{
-    return async(dispatch:any)=>{
-        try{
+export const getDetail = (id: string) => {
+    return async (dispatch: any) => {
+        try {
             dispatch(changeRefreshTips(true))
-            let res:any =  await getContentDetailRequest(id)
+            let res: any = await getContentDetailRequest(id)
             let data = res.data
-            if(data.success){
+            if (data.success) {
                 dispatch(changeDetail(data.data))
                 dispatch(changeRefreshTips(false))
             }
-            console.log('getDetail',res)
-        }catch(err){
-            console.log('getDetail',err)
+            console.log('getDetail', res)
+        } catch (err) {
+            console.log('getDetail', err)
         }
     }
 }
@@ -97,15 +97,33 @@ export const getDetail = (id:string)=>{
 // 获取用户信息
 
 
-export const getUserDetail = (username:string)=>{
-    return async (dispatch:any)=>{
-        try{
-            let res:any = await getUserDetailRequest(username)
+export const getUserDetail = (username: string) => {
+    return async (dispatch: any) => {
+        try {
+            let res: any = await getUserDetailRequest(username)
             let data = res.data
             dispatch(changeUserDetail(data.data))
-            console.log('getUserDetail...',data.data)
-        }catch(err){
-            console.log('getUserDetail...',err)
+            console.log('getUserDetail...', data.data)
+        } catch (err) {
+            console.log('getUserDetail...', err)
+        }
+    }
+}
+
+// 效验token
+export const setToken = (token: string,callback:Function) => {
+    return async () => {
+        try {
+            let res:any = await verifyTokenRequest(token)
+            let data = res.data
+            // 本地存储
+            localStorage.setItem('token', token)
+            localStorage.setItem('user',JSON.stringify(data))
+            callback && callback(true)
+            console.log('setToken res...',data)
+        } catch (err) {
+            callback && callback(false)
+            console.log('setToken...',err)
         }
     }
 }

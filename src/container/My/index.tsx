@@ -24,13 +24,15 @@ class My extends Component<Props, State> {
 
     render() {
         let token = localStorage.getItem('token')
-        let user = localStorage.getItem('user')
+        let _user = localStorage.getItem('user') || '{}'
+        let user = JSON.parse(_user)
+        console.log(user)
         return (
             <div>
-                <Header title="用户中心" />
+                <Header title={user.loginname || '用户中心'} />
                 <div className="my-box">
                     <div className="user-bg">
-                        <div className="user-touxiang"></div>
+                        <div className="user-touxiang" style={{ backgroundImage: `url(${user.avatar_url})` }}></div>
                     </div>
                     <ul className="my-wrap">
                         <li>
@@ -39,12 +41,12 @@ class My extends Component<Props, State> {
                                 <em className="iconfont icon-jiantou"></em>
                             </div>
                         </li>
-                        <li>
+                        {/* <li>
                             <div>评论加尾</div>
                             <div>
                                 <em className="iconfont icon-kaiguanguan"></em>
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                     <div className="login-out">
                         {
