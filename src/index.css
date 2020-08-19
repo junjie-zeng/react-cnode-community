@@ -254,13 +254,14 @@ input, button {
 
 .list-item .item-header>div {
   float: left;
-  width: 50%;
+  
   height: 5rem;
   padding: 0 1rem;
 }
 
 .list-item .item-header>div:nth-child(1) {
   line-height: 4.7rem;
+  width: 60%;
 }
 
 .list-item .item-header>div:nth-child(1)>span {
@@ -280,6 +281,7 @@ input, button {
 .list-item .item-header>div:nth-child(2) {
   line-height: 5rem;
   padding-left: 17%;
+  width: 40%;
 }
 
 .list-item .item-header>div:nth-child(2) span {
