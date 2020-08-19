@@ -12,8 +12,8 @@ class Tab extends React.Component<Props> {
             <ul className="tab">
                 {
                     Tablist.map((item: any, index: number) => (
-                        <li key={index} className={item.active ? 'active' : ''} onClick={() => switchTab(index, item.type)}>
-                            {item.name}
+                        <li key={index}  onClick={() => switchTab(index, item.type)}>
+                            <div className={item.active ? 'active' : ''}>{item.name}</div>
                         </li>
                     ))
                 }

@@ -343,8 +343,10 @@ input, button {
   text-align: center;
   line-height: 4rem;
 }
-
-.tab li.active {
+.tab li div{
+  height: 3.9rem;
+}
+.tab li div.active {
   color: #3388ff;
   border-bottom: solid .3rem #3388ff;
 }
