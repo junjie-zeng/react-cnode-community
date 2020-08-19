@@ -26,7 +26,7 @@ class Classify extends Component<Props, State> {
                 { name: '问答', active: false, type: 'ask' },
                 { name: '分享', active: false, type: 'share' },
                 { name: '招聘', active: false, type: 'job' },
-                // { name: '测试', active: false, type: 'cs' },
+                { name: '测试', active: false, type: 'dev' },
             ],
             limit: 5,
             tab: 'good',

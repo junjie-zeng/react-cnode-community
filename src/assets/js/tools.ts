@@ -31,7 +31,10 @@ export const getThemeType = (post: any) => {
         return '分享'
     } else if(post.tab == 'job'){
         return '招聘'
+    }else if(post.tab == 'dev'){
+        return '测试'
     }
+
 }
 
 export const getThemeColor = (post: any) => {
