@@ -70,7 +70,7 @@ class Home extends React.Component<Props, State> {
                     <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
                         {
                             contentList.map((item: any, i: number) => (
-                                <div className="list-item" key={i}>
+                                <div className="list-item swing" key={i}>
                                     <div className="item-header">
                                         <div>
                                             <span className="portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }} onClick={() => { history.push(`/user/${item.author.loginname}`) }}></span>
