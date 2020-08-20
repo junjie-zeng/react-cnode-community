@@ -46,7 +46,7 @@ class ContentDetail extends React.Component<Props, State>{
         // 输入框有内容则发布
         if (commentContent) {
             // 调用发布函数
-
+            alert('接口暂未开放')
             return
         }
 
@@ -83,7 +83,7 @@ class ContentDetail extends React.Component<Props, State>{
         const loginname = author && author.loginname
         const avatar_url = author && author.avatar_url
         const is_collect = detail && detail.is_collect
-        console.log(detail)
+       // console.log(detail)
         return (
             <div className={isContent ? 'detail-wrapper' : 'detail-rotate detail-wrapper'} >
                 {
@@ -106,8 +106,8 @@ class ContentDetail extends React.Component<Props, State>{
                                                             <span className="name">{item.author.loginname}</span>
                                                         </div>
                                                         <div>
-                                                            <em className="iconfont icon-shoucang"></em>
-                                                            <em>0</em>
+                                                            {/* <em className="iconfont icon-shoucang"></em>
+                                                            <em>0</em> */}
                                                         </div>
                                                     </div>
                                                     <div className="comment">
