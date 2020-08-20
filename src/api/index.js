@@ -14,7 +14,7 @@ export const getContentListRequest = (page, limit, tab = '') => ajax(`${_PATH}/t
 
 // https://cnodejs.org/api/v1/topic/5ee1ee83b703280f0bcb922a
 // 获取内容详情
-export const getContentDetailRequest = (id) => ajax(`${_PATH}/topic/${id}`)
+export const getContentDetailRequest = (id,accesstoken) => ajax(`${_PATH}/topic/${id}?accesstoken=${accesstoken}`)
 // 获取用户详情
 export const getUserDetailRequest = (username) => ajax(`${_PATH}/user/${username}`)
 // https://cnodejs.org/api/v1/user/Q-Angelo

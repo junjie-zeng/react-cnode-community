@@ -1,4 +1,4 @@
-import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest, getUserCollectRequest } from '../api'
+import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest, getUserCollectRequest ,collectRequest,delCollectRequest} from '../api'
 import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS, GET_MSG_SUCCESS } from './action-type'
 import { GET_USER_COLLECT_SUCCESS } from './action-type'
 
@@ -85,11 +85,11 @@ export const getClassifyContent = (page: number, limit: number, tab: string) => 
 }
 
 // 获取详情
-export const getDetail = (id: string) => {
+export const getDetail = (id: string,token:string) => {
     return async (dispatch: any) => {
         try {
             dispatch(changeRefreshTips(true))
-            let res: any = await getContentDetailRequest(id)
+            let res: any = await getContentDetailRequest(id,token)
             let data = res.data
             if (data.success) {
                 dispatch(changeDetail(data.data))
@@ -98,6 +98,25 @@ export const getDetail = (id: string) => {
             console.log('getDetail', res)
         } catch (err) {
             console.log('getDetail', err)
+        }
+    }
+}
+
+// 收藏
+export const setCollect = (id:string,token:string,isCollect:boolean) =>{
+    return async (dispatch:any)=>{
+        try{
+            if(isCollect){
+                let res:any = await delCollectRequest(token,id)
+                console.log('delCollectRequest...',res)
+            }else{
+                let res:any = await collectRequest(token,id)
+                console.log('collectRequest...',res)
+            }
+            // 重新调用详情，触发状态更新
+            dispatch(getDetail(id,token))
+        }catch(err){
+            console.log('setCollect err...',err)
         }
     }
 }

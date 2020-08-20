@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { Action } from '../interface'
-import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS, GET_MSG_SUCCESS ,GET_USER_COLLECT_SUCCESS} from './action-type'
+import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS,IS_COLLECT, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS, GET_MSG_SUCCESS ,GET_USER_COLLECT_SUCCESS} from './action-type'
 
 import { MASK, PANEL } from './action-type'
 
@@ -13,7 +13,8 @@ const contentState = {
     msgTips: false,     // 刷新提示
     contentList: [],    // 内容列表
     classifyContentList: [],
-    detail: {}           // 详情
+    detail: {},           // 详情
+    isCollect:false      //收藏
 }
 
 
@@ -25,6 +26,8 @@ const content = (state = contentState, action: Action) => {
             return { ...state, classifyContentList: action.data }
         case GET_CONTENT_DETAIL_SUCCESS:
             return { ...state, detail: action.data }
+        case IS_COLLECT:
+            return {...state, isCollect:action.data}
         case LOADING:
             return { ...state, loading: action.data }
         case REFRESHTIPS:

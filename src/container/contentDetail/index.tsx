@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Scroll from '../../baseUi/Scroll'
-import { getDetail } from '../../store/action'
+import { getDetail, setCollect } from '../../store/action'
 import Header from '../../components/Header'
 interface Props {
     match: any
     history: any
     getDetail: Function
+    setCollect: Function
     detail: any
     refreshTips: boolean
-
+    
 }
 
 interface State {
@@ -22,7 +23,7 @@ class ContentDetail extends React.Component<Props, State>{
         super(props)
         this.state = {
             // 默认展示内容
-            isContent: true,
+            isContent: false,
             commentContent: ''
         }
     }
@@ -35,7 +36,8 @@ class ContentDetail extends React.Component<Props, State>{
         const { getDetail } = this.props
         const { match } = this.props
         const id = match.params.id
-        getDetail(id)
+        const token = localStorage.getItem('token')
+        getDetail(id, token)
         //console.log(id)
     }
 
@@ -65,18 +67,30 @@ class ContentDetail extends React.Component<Props, State>{
         })
     }
 
+    handleCollect = async () => {
+        const { detail,setCollect } = this.props
+        const is_collect = detail && detail.is_collect
+        const id = detail && detail.id
+        const token = localStorage.getItem('token')
+        setCollect(id,token,is_collect)
+    }
+
 
     render() {
         const { isContent, commentContent } = this.state
         const { detail, refreshTips } = this.props
+        const { author } = detail
+        const loginname = author && author.loginname
+        const avatar_url = author && author.avatar_url
+        const is_collect = detail && detail.is_collect
         console.log(detail)
         return (
-            <div className = {isContent ?'detail-wrapper':'detail-rotate detail-wrapper'} >
+            <div className={isContent ? 'detail-wrapper' : 'detail-rotate detail-wrapper'} >
                 {
                     isContent ?
                         <div >
-                           
-                            <Header backFun = {()=>{this.props.history.go(-1)}} title = "评论"  />
+
+                            <Header backFun={() => { this.props.history.go(-1) }} title="评论" />
                             <div className='detail'>
                                 <div className="comment-content">
                                     <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
@@ -120,7 +134,7 @@ class ContentDetail extends React.Component<Props, State>{
                         </div>
                         :
                         <div className="content-box" >
-                             <Header backFun = {()=>{this.props.history.go(-1)}} title = {detail.author.loginname} portrait  = {detail.author.avatar_url} icon2 = "icon-shoucang" />
+                            <Header backFun={() => { this.props.history.go(-1) }} iconFun={this.handleCollect} title={loginname} portrait={avatar_url} icon2={is_collect ? 'icon-shoucang2' : 'icon-shoucang'} />
                             <div className='detail'>
                                 <div className="detail-content">
                                     <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
@@ -156,4 +170,4 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-export default connect(mapStateToProps, { getDetail })(ContentDetail)
+export default connect(mapStateToProps, { getDetail, setCollect })(ContentDetail)
