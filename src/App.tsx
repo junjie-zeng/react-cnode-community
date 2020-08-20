@@ -1,7 +1,7 @@
 import React from 'react';
 //renderRoutes 读取路由配置转化为 Route 标签
 import { renderRoutes } from 'react-router-config'
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter,Redirect } from 'react-router-dom';
 // import routes from './routes/index'
 
 import Home from './container/Home'
@@ -43,6 +43,9 @@ class App extends React.Component<any>{
   render() {
     const { navList } = this
     const path = this.props.location.pathname;
+    if(path === '/'){
+      return <Redirect to = '/home'/>
+    }
     //得到当前的nav,可能没有
     const currentNav = navList.find(nav => nav.path == path);
     // console.log(currentNav)
