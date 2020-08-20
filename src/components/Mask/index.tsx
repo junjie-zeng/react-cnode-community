@@ -1,17 +1,23 @@
 import React from 'react'
-import { setMask } from '../../store/action'
+import { setAssist } from '../../store/action'
 import { connect } from 'react-redux'
+import { MASK, PANEL} from './../../store/action-type'
 interface Props {
-    setMask: Function
+    setAssist: Function
     mask: boolean
 }
 
 function Mask(props: Props) {
     const { mask } = props
     const _style = { opacity: mask ? 1 : 0 ,zIndex:mask?5:-5}
+
+    const _setAssist = ()=>{
+        props.setAssist(MASK,false)
+        props.setAssist(PANEL,false)
+    }
+
     return (
-        <div className="mask" style={_style} onClick={() => { props.setMask(false) }} >
-        </div >
+        <div className="mask" style={_style} onClick={_setAssist} ></div >
     )
 }
 
@@ -26,8 +32,8 @@ function Mask(props: Props) {
 
 const mapStateToProps = (state: any) => {
     return {
-        mask: state.other.mask
+        mask: state.assist.mask
     }
 }
 
-export default connect(mapStateToProps, { setMask })(Mask)
+export default connect(mapStateToProps, { setAssist })(Mask)

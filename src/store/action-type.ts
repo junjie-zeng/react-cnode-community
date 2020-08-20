@@ -22,5 +22,6 @@ export const GET_USERINFO_SUCCESS = 'get_userinfo_success'
 
 
 export const MASK = 'mask'
+export const PANEL = 'panel'
 
 

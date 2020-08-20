@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { Action } from '../interface'
 import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS,GET_MSG_SUCCESS } from './action-type'
 
-import {MASK} from './action-type'
+import {MASK,PANEL} from './action-type'
 
 
 
@@ -64,15 +64,18 @@ const msg = (state = msgState, action: Action) => {
     }
 }
 
-// otherState
-const otherState = {
-    mask:false
+// assistState
+const assistState = {
+    mask:false,
+    panel:false
 }
 
-const other = (state = otherState,action:Action) =>{
+const assist = (state = assistState,action:Action) =>{
     switch(action.type){
         case MASK:
             return {...state,mask:action.data}
+        case PANEL:
+            return {...state,panel:action.data}
         default:
             return state
     }
@@ -85,5 +88,5 @@ export default combineReducers({
     content,
     user,
     msg,
-    other
+    assist
 })

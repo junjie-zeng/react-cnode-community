@@ -1,18 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getUserDetail, setMask } from './../../store/action'
+import { getUserDetail, setAssist } from './../../store/action'
 import { getThemeType, getRelativeTime } from '../../assets/js/tools'
 import Scroll from '../../baseUi/Scroll'
 import Header from '../../components/Header'
 import CommentTab from '../../components/CommentTab'
 import See from '../../components/See'
+import { MASK, PANEL } from './../../store/action-type'
 interface Props {
     userInfo: any
     match: any
     getUserDetail: Function
     history: any
     mask: boolean
-    setMask: Function
+    panel:boolean
+    setAssist: Function
 }
 interface State {
     isRecentTopics: boolean
@@ -52,15 +54,18 @@ class UserDetail extends React.Component<Props, State> {
 
     }
 
-    _openMask = () => {
-        this.props.setMask(true)
+    _setAssist = () => {
+        // 设置遮罩与面板
+        this.props.setAssist(MASK,true)
+        this.props.setAssist(PANEL,true)
     }
+    
     render() {
-        const { userInfo, mask } = this.props
+        const { userInfo, panel } = this.props
         const { isRecentTopics, tabs } = this.state
         return (
             <div>
-                <Header backFun={() => { this.props.history.go(-1) }} title={userInfo.loginname} icon2='icon-qita' iconFun={this._openMask} />
+                <Header backFun={() => { this.props.history.go(-1) }} title={userInfo.loginname} icon2='icon-qita' iconFun={this._setAssist} />
                 <div className="user-his-comment">
                     <div className="user-bg">
                         <div className="user-touxiang" style={{ backgroundImage: `url(${userInfo.avatar_url})` }}></div>
@@ -114,7 +119,7 @@ class UserDetail extends React.Component<Props, State> {
 
                     </div>
                 </div>
-                <See op={mask} />
+                <See op={panel} githubUsername = {userInfo.githubUsername} />
             </div>
         )
     }
@@ -123,8 +128,9 @@ class UserDetail extends React.Component<Props, State> {
 const mapStateToProps = (state: any) => {
     return {
         userInfo: state.user.userInfo,
-        mask: state.other.mask
+        mask: state.assist.mask,
+        panel:state.assist.panel
     }
 }
 
-export default connect(mapStateToProps, { getUserDetail, setMask })(UserDetail)
+export default connect(mapStateToProps, { getUserDetail, setAssist })(UserDetail)

@@ -1,6 +1,6 @@
 import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest } from '../api'
-import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS ,GET_MSG_SUCCESS} from './action-type'
-import {MASK} from './action-type'
+import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS, GET_MSG_SUCCESS } from './action-type'
+import { MASK, PANEL } from './action-type'
 
 
 /*
@@ -14,12 +14,12 @@ const changeLoading = (data: boolean) => ({ type: LOADING, data })
 const changeRefreshTips = (data: boolean) => ({ type: REFRESHTIPS, data })
 const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
 const changeDetail = (data: any) => ({ type: GET_CONTENT_DETAIL_SUCCESS, data })
-const changeMsg = (data:any) =>({type:GET_MSG_SUCCESS,data})
+const changeMsg = (data: any) => ({ type: GET_MSG_SUCCESS, data })
 
 
 // 修改遮罩
 
-const changeMask = (data:boolean) =>({type:MASK,data})
+const changeAssist = (type: string, data: boolean) => ({ type, data })
 
 
 // 修改用户信息
@@ -120,14 +120,14 @@ export const getUserDetail = (username: string) => {
 
 // 获取消息 getMsgRequest
 export const getMsg = (token: string) => {
-    return async (dispatch:any) => {
-        try{
-            let res:any = await getMsgRequest(token)
+    return async (dispatch: any) => {
+        try {
+            let res: any = await getMsgRequest(token)
             let data = res.data
-            console.log('getMsg res...',data.data)
+            console.log('getMsg res...', data.data)
             dispatch(changeMsg(data.data))
-        }catch(err){
-            console.log('getMsg err...',err)
+        } catch (err) {
+            console.log('getMsg err...', err)
         }
     }
 }
@@ -151,8 +151,8 @@ export const setToken = (token: string, callback: Function) => {
 }
 
 // 遮罩
-export const setMask = (is:boolean) =>{
-    return (dispatch:any)=>{
-        dispatch(changeMask(is))
-    }
-}
+// export const setMask = (isMask: boolean) => changeAssist(MASK, isMask)
+// 查看面板
+// export const setSeePanle = (isPanle: boolean) => changeAssist(PANEL, isPanle)
+// 设置辅助状态
+export const setAssist = (type: string, is: boolean) => changeAssist(type, is)

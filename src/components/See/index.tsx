@@ -1,9 +1,11 @@
 import React from 'react'
-import { setMask } from '../../store/action'
+import { setAssist } from '../../store/action'
 import { connect } from 'react-redux'
+import { PANEL } from './../../store/action-type'
 interface Props {
     op?: boolean
-    setMask: Function
+    setAssist: Function
+    githubUsername?: string
 }
 interface State {
 
@@ -14,20 +16,24 @@ class See extends React.Component<Props, State>{
 
     }
 
-    handleSwitch = () => {
-        this.props.setMask(false)
-    }
+    // handleSwitch = () => {
+    //     this.props.setAssist(PANEL,false)
+    // }
 
 
     render() {
-        const { op } = this.props
+        const { op, githubUsername } = this.props
         const _bottom = { bottom: op ? '0' : '-8rem' }
         const _isShow = { display: op ? 'block' : 'none' }
         return (
 
             <ul className="see-opertion" style={_bottom}>
                 <li>查看收藏</li>
-                <li>查看GitHub</li>
+                <li>
+                    <a href = {`https://github.com/${githubUsername}`}>
+                        查看GitHub
+                    </a>
+                </li>
             </ul>
 
 
@@ -36,4 +42,4 @@ class See extends React.Component<Props, State>{
 }
 
 
-export default connect(null, { setMask })(See)
+export default connect(null, { setAssist })(See)
