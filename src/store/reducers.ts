@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { Action } from '../interface'
-import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS,GET_MSG_SUCCESS } from './action-type'
+import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, GET_CONTENT_DETAIL_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_USERINFO_SUCCESS, GET_MSG_SUCCESS ,GET_USER_COLLECT_SUCCESS} from './action-type'
 
-import {MASK,PANEL} from './action-type'
+import { MASK, PANEL } from './action-type'
 
 
 
@@ -38,13 +38,16 @@ const content = (state = contentState, action: Action) => {
 
 // 用户信息
 const userState = {
-    userInfo: {}, 
+    userInfo: {},
+    userCollect: []
 }
 
 const user = (state = userState, action: Action) => {
     switch (action.type) {
         case GET_USERINFO_SUCCESS:
             return { ...state, userInfo: action.data }
+        case GET_USER_COLLECT_SUCCESS:
+            return { ...state, userCollect: action.data }
         default:
             return state
     }
@@ -66,16 +69,16 @@ const msg = (state = msgState, action: Action) => {
 
 // assistState
 const assistState = {
-    mask:false,
-    panel:false
+    mask: false,
+    panel: false
 }
 
-const assist = (state = assistState,action:Action) =>{
-    switch(action.type){
+const assist = (state = assistState, action: Action) => {
+    switch (action.type) {
         case MASK:
-            return {...state,mask:action.data}
+            return { ...state, mask: action.data }
         case PANEL:
-            return {...state,panel:action.data}
+            return { ...state, panel: action.data }
         default:
             return state
     }

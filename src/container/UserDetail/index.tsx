@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getUserDetail, setAssist } from './../../store/action'
+import { getUserDetail, setAssist, getUserCollect } from './../../store/action'
 import { getThemeType, getRelativeTime } from '../../assets/js/tools'
 import Scroll from '../../baseUi/Scroll'
 import Header from '../../components/Header'
+import UserCollect from '../../components/UserCollect'
 import CommentTab from '../../components/CommentTab'
 import See from '../../components/See'
 import { MASK, PANEL } from './../../store/action-type'
@@ -11,14 +12,17 @@ interface Props {
     userInfo: any
     match: any
     getUserDetail: Function
+    getUserCollect: Function
     history: any
     mask: boolean
-    panel:boolean
+    panel: boolean
     setAssist: Function
+    userCollect: any
 }
 interface State {
     isRecentTopics: boolean
-    tabs: Array<any>
+    tabs: Array<any>,
+    isShow:boolean
 }
 class UserDetail extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -28,7 +32,8 @@ class UserDetail extends React.Component<Props, State> {
             tabs: [
                 { title: '最近主题', active: true },
                 { title: '最近评论', active: false }
-            ]
+            ],
+            isShow:false
         }
     }
     // 渲染前
@@ -55,14 +60,36 @@ class UserDetail extends React.Component<Props, State> {
     }
 
     _setAssist = () => {
+        const { setAssist  } = this.props
         // 设置遮罩与面板
-        this.props.setAssist(MASK,true)
-        this.props.setAssist(PANEL,true)
+        setAssist(MASK, true)
+        setAssist(PANEL, true)
+
     }
-    
+
+    _getCollect = () => {
+        const { getUserCollect, userInfo,setAssist } = this.props
+        const loginname = userInfo.loginname
+        // 设置遮罩与面板
+        getUserCollect(loginname,()=>{
+            // todo 状态变更会触发多次更新
+            setAssist(MASK, false)
+            setAssist(PANEL, false)
+            this.setState({
+                isShow:true
+            })
+        })
+    }
+
+    _collectPageBack = ()=>{
+        this.setState({
+            isShow:false
+        })
+    }
+
     render() {
-        const { userInfo, panel } = this.props
-        const { isRecentTopics, tabs } = this.state
+        const { userInfo, panel, userCollect } = this.props
+        const { isRecentTopics, tabs ,isShow} = this.state
         return (
             <div>
                 <Header backFun={() => { this.props.history.go(-1) }} title={userInfo.loginname} icon2='icon-qita' iconFun={this._setAssist} />
@@ -119,7 +146,8 @@ class UserDetail extends React.Component<Props, State> {
 
                     </div>
                 </div>
-                <See op={panel} githubUsername = {userInfo.githubUsername} />
+                <See op={panel} githubUsername={userInfo.githubUsername} getCollect = {this._getCollect}/>
+                <UserCollect loginname={userInfo.loginname} collect={userCollect} isShow = {isShow} collectPageBack = {this._collectPageBack}/>
             </div>
         )
     }
@@ -128,9 +156,10 @@ class UserDetail extends React.Component<Props, State> {
 const mapStateToProps = (state: any) => {
     return {
         userInfo: state.user.userInfo,
+        userCollect: state.user.userCollect,
         mask: state.assist.mask,
-        panel:state.assist.panel
+        panel: state.assist.panel
     }
 }
 
-export default connect(mapStateToProps, { getUserDetail, setAssist })(UserDetail)
+export default connect(mapStateToProps, { getUserDetail, setAssist, getUserCollect })(UserDetail)

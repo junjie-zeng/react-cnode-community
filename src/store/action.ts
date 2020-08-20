@@ -1,6 +1,6 @@
-import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest } from '../api'
+import { getContentListRequest, getContentDetailRequest, getUserDetailRequest, verifyTokenRequest, getMsgRequest, getUserCollectRequest } from '../api'
 import { GET_CONTENT_SUCCESS, GET_CLASSIFY_CONTENT_SUCCESS, LOADING, REFRESHTIPS, MSG_TIPS, GET_CONTENT_DETAIL_SUCCESS, GET_USERINFO_SUCCESS, GET_MSG_SUCCESS } from './action-type'
-import { MASK, PANEL } from './action-type'
+import { GET_USER_COLLECT_SUCCESS } from './action-type'
 
 
 /*
@@ -14,6 +14,7 @@ const changeLoading = (data: boolean) => ({ type: LOADING, data })
 const changeRefreshTips = (data: boolean) => ({ type: REFRESHTIPS, data })
 const changeMsgTips = (data: boolean) => ({ type: MSG_TIPS, data })
 const changeDetail = (data: any) => ({ type: GET_CONTENT_DETAIL_SUCCESS, data })
+const changeUserCollect = (data: any) => ({ type: GET_USER_COLLECT_SUCCESS, data })
 const changeMsg = (data: any) => ({ type: GET_MSG_SUCCESS, data })
 
 
@@ -102,8 +103,6 @@ export const getDetail = (id: string) => {
 }
 
 // 获取用户信息
-
-
 export const getUserDetail = (username: string) => {
     return async (dispatch: any) => {
         try {
@@ -113,6 +112,21 @@ export const getUserDetail = (username: string) => {
             console.log('getUserDetail...', data.data)
         } catch (err) {
             console.log('getUserDetail...', err)
+        }
+    }
+}
+
+// 获取用户收藏
+export const getUserCollect = (username: string, callback: Function) => {
+    return async (dispatch: any) => {
+        try {
+            let res: any = await getUserCollectRequest(username)
+            let data = res.data
+            dispatch(changeUserCollect(data.data))
+            callback && callback()
+            //console.log('getUserCollect res ...',data.data)
+        } catch (err) {
+            console.log('getUserCollect err ...', err)
         }
     }
 }

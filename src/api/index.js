@@ -31,3 +31,5 @@ export const verifyTokenRequest = (accesstoken) => ajax(`${_PATH}/accesstoken`, 
 export const collectRequest = (accesstoken, topic_id) => ajax(`${_PATH}/topic_collect/collect`, { accesstoken, topic_id }, 'POST')
 // 取消主题收藏
 export const delCollectRequest = (accesstoken, topic_id) => ajax(`${_PATH}/topic_collect/de_collect`, { accesstoken, topic_id }, 'POST')
+// 查看用户所收藏的主题
+export const getUserCollectRequest = (username) => ajax(`${_PATH}/topic_collect/${username}`)

@@ -6,6 +6,7 @@ interface Props {
     op?: boolean
     setAssist: Function
     githubUsername?: string
+    getCollect:any
 }
 interface State {
 
@@ -22,13 +23,13 @@ class See extends React.Component<Props, State>{
 
 
     render() {
-        const { op, githubUsername } = this.props
+        const { op, githubUsername ,getCollect} = this.props
         const _bottom = { bottom: op ? '0' : '-8rem' }
         const _isShow = { display: op ? 'block' : 'none' }
         return (
 
             <ul className="see-opertion" style={_bottom}>
-                <li>查看收藏</li>
+                <li onClick = {getCollect}>查看收藏</li>
                 <li>
                     <a href = {`https://github.com/${githubUsername}`}>
                         查看GitHub

@@ -19,7 +19,8 @@ export const MSG_TIPS= 'msg_tips'
 
 // 用户信息
 export const GET_USERINFO_SUCCESS = 'get_userinfo_success'
-
+// 用户收藏
+export const GET_USER_COLLECT_SUCCESS = 'get_user_collect_success'
 
 export const MASK = 'mask'
 export const PANEL = 'panel'

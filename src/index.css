@@ -72,7 +72,7 @@ a {
 
 /* css3动画 */
 
-.list-item {
+.swing {
   animation: swing 1s .2s ease both;
 }
 
@@ -255,7 +255,6 @@ input, button {
 
 .list-item .item-header>div {
   float: left;
-  
   height: 5rem;
   padding: 0 1rem;
 }
@@ -281,7 +280,7 @@ input, button {
 
 .list-item .item-header>div:nth-child(2) {
   line-height: 5rem;
-  padding-left: 17%;
+  padding-left: 2rem;
   width: 40%;
 }
 
@@ -346,9 +345,11 @@ input, button {
   text-align: center;
   line-height: 4rem;
 }
-.tab li div{
+
+.tab li div {
   height: 3.9rem;
 }
+
 .tab li div.active {
   color: #3388ff;
   border-bottom: solid .3rem #3388ff;
@@ -662,4 +663,23 @@ input, button {
   border-bottom: solid .1rem #f3f3f3;
   color: #414141;
   font-size: 1.6rem;
+}
+
+.user-collect {
+  position: fixed;
+  top: 60rem;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  background: #fff;
+  transition: 1s;
+}
+
+.collect-wrap {
+  position: absolute;
+  top: 4rem;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+  overflow: hidden;
 }
