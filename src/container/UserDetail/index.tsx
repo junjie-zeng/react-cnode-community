@@ -8,6 +8,7 @@ import UserCollect from '../../components/UserCollect'
 import CommentTab from '../../components/CommentTab'
 import See from '../../components/See'
 import { MASK, PANEL } from './../../store/action-type'
+import Toast from './../../baseUi/Toast'
 interface Props {
     userInfo: any
     match: any
@@ -67,12 +68,15 @@ class UserDetail extends React.Component<Props, State> {
 
     }
 
+    // 查看收藏
     _getCollect = () => {
         const { getUserCollect, userInfo,setAssist } = this.props
         const loginname = userInfo.loginname
+        const loadCallback = Toast.loading()
+        
         // 设置遮罩与面板
         getUserCollect(loginname,()=>{
-            // todo 状态变更会触发多次更新
+            loadCallback()
             setAssist(MASK, false)
             setAssist(PANEL, false)
             this.setState({

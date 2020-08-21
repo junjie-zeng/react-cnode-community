@@ -34,7 +34,7 @@ class Toast extends Component<Props, State> {
         notices[0] = notice;
         // 更新
         this.setState({ notices })
-        // 有延迟则等待 否则直接删除
+        // 有延迟则等待 否则返回回调（根据回调去决定是否删除）
         if (notice.duration > 0) {
             setTimeout(() => {
                 this.removeNotice(notice.key)
