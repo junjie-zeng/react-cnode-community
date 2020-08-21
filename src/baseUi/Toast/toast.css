@@ -1,0 +1,99 @@
+.toast {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+}
+
+.toast_bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.toast_box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 10rem;
+    height: 10rem;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: .5rem;
+    color: #fff;
+}
+
+.toast_text {
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    height: 2.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.8rem;
+}
+
+.toast_icon {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    line-height: 5rem
+}
+
+.toast_info, .toast_error, .toast_success, .toast_loading {
+    display: block;
+    font-family: 'iconfont';
+    font-size: 5rem;
+}
+
+.toast_loading::before {
+    content: '\e608';
+    display: block;
+    -webkit-animation: loading 1s steps(8, end) infinite;
+    animation: loading 1s steps(8, end) infinite;
+}
+
+.toast_error::before {
+    content: '\e629';
+}
+
+.toast_success::before {
+    content: '\e601';
+}
+
+.toast_info::before {
+    content: '\e607';
+}
+
+@-webkit-keyframes loading {
+    0% {
+        -webkit-transform: rotate3d(0, 0, 1, 0deg);
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 360deg);
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+
+@keyframes loading {
+    0% {
+        -webkit-transform: rotate3d(0, 0, 1, 0deg);
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+    100% {
+        -webkit-transform: rotate3d(0, 0, 1, 360deg);
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
