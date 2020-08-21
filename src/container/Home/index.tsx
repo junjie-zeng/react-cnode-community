@@ -6,7 +6,7 @@ import Tips from '../../components/Tips/Tips'
 import Header from '../../components/Header'
 import Scroll from '../../baseUi/Scroll'
 // 工具
-import { getThemeType, getRelativeTime ,getThemeColor} from '../../assets/js/tools'
+import { getThemeType, getRelativeTime, getThemeColor } from '../../assets/js/tools'
 
 interface Props {
     getContent: Function,
@@ -57,14 +57,18 @@ class Home extends React.Component<Props, State> {
         this.props.history.push(`/detail/${id}`)
     }
 
-
+    handleJumpGitHub = () => {
+        let user:any = localStorage.getItem('user')
+        let name = JSON.parse(user).loginname
+        window.location.href = `https://github.com/${name}`
+    }
 
     render() {
         const { loading, refreshTips, contentList, msgTips, history } = this.props
         const { limit } = this.state
         return (
             <div>
-                <Header title='CNode.js中文社区' icon2="icon-github" />
+                <Header title='CNode.js中文社区' icon2="icon-github" iconFun={this.handleJumpGitHub} />
                 <Tips lei="msg-tips" isShow={msgTips} >新增 {limit} 条主题请查收！</Tips>
                 <section className="main-content">
                     <Scroll handleTouchEnd={this.handleTouchEnd} refreshTips={refreshTips}>
@@ -77,7 +81,7 @@ class Home extends React.Component<Props, State> {
                                             <span className="name">{item.author.loginname}</span>
                                         </div>
                                         <div>
-                                            <span className="classify" style={{background:getThemeColor(item)}}>{getThemeType(item)}</span>
+                                            <span className="classify" style={{ background: getThemeColor(item) }}>{getThemeType(item)}</span>
                                             <span className="release-date">{getRelativeTime(item.create_at)}</span>
                                         </div>
                                     </div>
