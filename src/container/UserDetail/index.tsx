@@ -42,13 +42,17 @@ class UserDetail extends React.Component<Props, State> {
         this._init()
 
     }
-
+    // 初始化
     _init() {
         const { getUserDetail } = this.props
         const { match } = this.props
         const username = match.params.username
         getUserDetail(username)
 
+    }
+    // 下拉刷新
+    _dropDownRefresh = () =>{
+        this._init()
     }
 
 
@@ -84,6 +88,14 @@ class UserDetail extends React.Component<Props, State> {
             })
         })
     }
+    // 收藏刷新回调
+    _handleCollectDropDownRefresh = ()=>{
+        const { getUserCollect, userInfo } = this.props
+        const loginname = userInfo.loginname
+        getUserCollect(loginname)
+        console.log('loginname',loginname)
+        
+    }
 
     _collectPageBack = ()=>{
         this.setState({
@@ -105,7 +117,7 @@ class UserDetail extends React.Component<Props, State> {
                     <div className="comment-tab-box">
                         {
                             isRecentTopics ?
-                                <Scroll handleTouchEnd={() => { }} refreshTips={false}>
+                                <Scroll handleTouchEnd={this._dropDownRefresh} refreshTips={false}>
                                     {
                                         userInfo && userInfo.recent_topics && userInfo.recent_topics.map((item: any, index: number) => (
                                             <div className="comment-item" key={index}>
@@ -126,7 +138,7 @@ class UserDetail extends React.Component<Props, State> {
                                     }
                                 </Scroll>
                                 :
-                                <Scroll handleTouchEnd={() => { }} refreshTips={false}>
+                                <Scroll handleTouchEnd={this._dropDownRefresh} refreshTips={false}>
                                     {
                                         userInfo && userInfo.recent_replies && userInfo.recent_replies.map((item: any, index: number) => (
                                             <div className="comment-item" key={index}>
@@ -151,7 +163,7 @@ class UserDetail extends React.Component<Props, State> {
                     </div>
                 </div>
                 <See op={panel} githubUsername={userInfo.githubUsername} getCollect = {this._getCollect}/>
-                <UserCollect loginname={userInfo.loginname} collect={userCollect} isShow = {isShow} collectPageBack = {this._collectPageBack}/>
+                <UserCollect loginname={userInfo.loginname} collect={userCollect} isShow = {isShow} collectPageBack = {this._collectPageBack} handleCollectDropDownRefresh = {this._handleCollectDropDownRefresh}/>
             </div>
         )
     }

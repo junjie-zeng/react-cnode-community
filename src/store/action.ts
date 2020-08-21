@@ -136,7 +136,7 @@ export const getUserDetail = (username: string) => {
 }
 
 // 获取用户收藏
-export const getUserCollect = (username: string, callback: Function) => {
+export const getUserCollect = (username: string, callback?: Function) => {
     return async (dispatch: any) => {
         try {
             let res: any = await getUserCollectRequest(username)

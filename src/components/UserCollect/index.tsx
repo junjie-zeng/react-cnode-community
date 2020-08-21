@@ -9,6 +9,8 @@ interface Props {
     history?: any
     isShow:boolean
     collectPageBack:Function
+    handleCollectDropDownRefresh:Function
+    
 }
 interface State {
     isShow: boolean
@@ -24,7 +26,7 @@ class UserCollect extends React.Component<any, State> {
 
 
     render() {
-        const { loginname, collect ,isShow,collectPageBack} = this.props
+        const { loginname, collect ,isShow,collectPageBack,handleCollectDropDownRefresh} = this.props
 
         const _style = { top: isShow ? 0 : '60rem' }
         // console.log('props...', this.props)
@@ -32,7 +34,7 @@ class UserCollect extends React.Component<any, State> {
             <div className="user-collect" style={_style}>
                 <Header backFun={collectPageBack} title={loginname} />
                 <div className="collect-wrap">
-                    <Scroll handleTouchEnd={() => { }} refreshTips={false}>
+                    <Scroll handleTouchEnd={handleCollectDropDownRefresh} refreshTips={false}>
                         {
                             collect && collect.map((item: any, index: number) => (
                                 <div className="list-item" key={index}>

@@ -70,14 +70,14 @@ class Classify extends Component<Props, State> {
         getClassifyContent(page, limit,tab)
     }
     // 查看评论
-    handleSeeComment(id: string) {
-        this.props.history.push(`/detail/${id}`)
+    handleSeeComment(id: string,isComment:boolean) {
+        this.props.history.push(`/detail/${id}/${isComment}`)
     }
 
 
     render() {
         const { Tablist } = this.state
-        const { classifyContentList, refreshTips } = this.props
+        const { classifyContentList, refreshTips ,history} = this.props
         return (
             <div className="classify-box">
                 <Tab Tablist={Tablist} switchTab={this.switchTab} />
@@ -87,7 +87,7 @@ class Classify extends Component<Props, State> {
                             classifyContentList.map((item: any, index: number) => (
                                 <div className="list-item swing" key = {index}>
                                     <div className="item-header">
-                                        <div>
+                                        <div onClick={() => { history.push(`/user/${item.author.loginname}`) }}>
                                             <span className="portrait" style={{ backgroundImage: `url(${item.author.avatar_url})` }}></span>
                                             <span className="name">{item.author.loginname}</span>
                                         </div>
@@ -96,7 +96,7 @@ class Classify extends Component<Props, State> {
                                             <span className="release-date">{getRelativeTime(item.create_at)}</span>
                                         </div>
                                     </div>
-                                    <div className="item-content" onClick={() => { this.handleSeeComment(item.id) }}>
+                                    <div className="item-content" onClick={() => { this.handleSeeComment(item.id,false) }}>
                                         <p>{item.title}</p>
                                     </div>
                                     <div className="item-nav">
@@ -104,7 +104,7 @@ class Classify extends Component<Props, State> {
                                             <span className="iconfont icon-yanjing"></span>
                                             <span>{item.visit_count}</span>
                                         </div>
-                                        <div className="item-n-msg">
+                                        <div className="item-n-msg" onClick={() => { this.handleSeeComment(item.id,true) }}>
                                             <span className="iconfont icon-dkw_xiaoxi"></span>
                                             <span>{item.reply_count}</span>
                                         </div>

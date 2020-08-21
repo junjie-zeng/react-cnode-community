@@ -31,15 +31,26 @@ class ContentDetail extends React.Component<Props, State>{
     // 渲染前
     componentWillMount() {
         this._loadingDetail()
+        this._isComment()
+    }
+    
+    // 评论
+    _isComment() {
+        const isComment = this.props.match.params.comment
+        this.setState({
+            isContent: isComment == 'true' ? true : false
+        })
     }
 
     _loadingDetail() {
         const { getDetail } = this.props
         const { match } = this.props
         const id = match.params.id
+        // true：评论，false:内容
+
         const token = localStorage.getItem('token')
         getDetail(id, token)
-        //console.log(id)
+
     }
 
     // 内容/评论切换

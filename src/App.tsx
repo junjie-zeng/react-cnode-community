@@ -59,7 +59,7 @@ class App extends React.Component<any>{
           <Route path='/classify' component={Classify}></Route>
           <Route path='/my' component={My}></Route>
           <Route path='/login' component={Login}></Route>
-          <Route path='/detail/:id' component={ContentDetail}></Route>
+          <Route path='/detail/:id/:comment' component={ContentDetail}></Route>
           <Route path='/user/:username' component={UserDetail}></Route>
         </Switch>
         {currentNav ? <NavFooter navList={navList} /> : null}
