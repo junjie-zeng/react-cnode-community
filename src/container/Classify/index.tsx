@@ -60,6 +60,7 @@ class Classify extends Component<Props, State> {
         })
     }
 
+    // 下拉结束
     handleTouchEnd = () => {
         let { page, limit,tab } = this.state
         const { getClassifyContent } = this.props
@@ -68,7 +69,7 @@ class Classify extends Component<Props, State> {
         })
         getClassifyContent(page, limit,tab)
     }
-
+    // 查看评论
     handleSeeComment(id: string) {
         this.props.history.push(`/detail/${id}`)
     }
@@ -125,7 +126,7 @@ class Classify extends Component<Props, State> {
 const mapStateToProps = (state: any) => {
     return {
         classifyContentList: state.content.classifyContentList,
-        refreshTips: state.content.refreshTips
+        refreshTips: state.assist.refreshTips
     }
 }
 export default connect(mapStateToProps, { getClassifyContent })(Classify)

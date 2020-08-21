@@ -110,10 +110,10 @@ class Home extends React.Component<Props, State> {
 
 const mapStateToProps = (state: any) => {
     return {
-        loading: state.content.loading,
-        refreshTips: state.content.refreshTips,
+        loading: state.assist.loading,
+        refreshTips: state.assist.refreshTips,
         contentList: state.content.contentList,
-        msgTips: state.content.msgTips
+        msgTips: state.assist.msgTips
     }
 }
 

@@ -166,7 +166,7 @@ class ContentDetail extends React.Component<Props, State>{
 const mapStateToProps = (state: any) => {
     return {
         detail: state.content.detail,
-        refreshTips: state.content.refreshTips
+        refreshTips: state.assist.refreshTips
     }
 }
 
