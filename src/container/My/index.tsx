@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../../components/Header'
-
+import Toast from './../../baseUi/Toast/index'
 interface Props {
     history: any
 }
@@ -19,7 +19,15 @@ class My extends Component<Props, State> {
         localStorage.setItem('user', '')
         this.props.history.push('/login')
     }
-
+    // 更多信息
+    handleManyInfo(loginname: string) {
+        let token = localStorage.getItem('token')
+        if (!token) {
+            Toast.info('未登录')
+            return
+        }
+        this.props.history.push(`/user/${loginname}`)
+    }
 
 
     render() {
@@ -35,7 +43,7 @@ class My extends Component<Props, State> {
                         <div className="user-touxiang" style={{ backgroundImage: `url(${user.avatar_url})` }}></div>
                     </div>
                     <ul className="my-wrap">
-                        <li onClick={() => { this.props.history.push(`/user/${user.loginname}`) }}>
+                        <li onClick={() => { this.handleManyInfo(user.loginname) }}>
                             <div>更多信息</div>
                             <div>
                                 <em className="iconfont icon-jiantou"></em>
