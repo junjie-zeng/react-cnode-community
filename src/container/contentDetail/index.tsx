@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Scroll from '../../baseUi/Scroll'
 import { getDetail, setCollect } from '../../store/action'
 import Header from '../../components/Header'
+import Toast from './../../baseUi/Toast'
 interface Props {
     match: any
     history: any
@@ -41,12 +42,16 @@ class ContentDetail extends React.Component<Props, State>{
         //console.log(id)
     }
 
+    // 内容/评论切换
     handleDetailSwitch(flag: boolean) {
         let { isContent, commentContent } = this.state
         // 输入框有内容则发布
         if (commentContent) {
             // 调用发布函数
-            alert('接口暂未开放')
+            Toast.info('接口暂未开放')
+            this.setState({
+                commentContent: ''
+            })
             return
         }
 
