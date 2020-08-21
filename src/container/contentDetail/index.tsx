@@ -10,7 +10,7 @@ interface Props {
     setCollect: Function
     detail: any
     refreshTips: boolean
-    
+
 }
 
 interface State {
@@ -68,11 +68,11 @@ class ContentDetail extends React.Component<Props, State>{
     }
 
     handleCollect = async () => {
-        const { detail,setCollect } = this.props
+        const { detail, setCollect } = this.props
         const is_collect = detail && detail.is_collect
         const id = detail && detail.id
         const token = localStorage.getItem('token')
-        setCollect(id,token,is_collect)
+        setCollect(id, token, is_collect)
     }
 
 
@@ -83,7 +83,7 @@ class ContentDetail extends React.Component<Props, State>{
         const loginname = author && author.loginname
         const avatar_url = author && author.avatar_url
         const is_collect = detail && detail.is_collect
-       // console.log(detail)
+        // console.log(detail)
         return (
             <div className={isContent ? 'detail-wrapper' : 'detail-rotate detail-wrapper'} >
                 {
@@ -95,7 +95,7 @@ class ContentDetail extends React.Component<Props, State>{
                                 <div className="comment-content">
                                     <Scroll handleTouchEnd={this._loadingDetail.bind(this)} refreshTips={refreshTips}>
                                         <div className="comment-count">
-                                            <h4>评论. 4</h4>
+                                            <h4>评论. {detail.replies && detail.replies.length}</h4>
                                         </div>
                                         {
                                             detail.replies && detail.replies.map((item: any, index: number) => (
