@@ -22,7 +22,9 @@ class Scroll extends React.Component<Props, State>{
     }
     // 第一次渲染后
     componentDidMount() {
-        const wrapper = new BScroll('.BScroll', {
+        const _wrapper:any = this.refs.wrapper
+        // console.log(this)
+        const wrapper = new BScroll(_wrapper, {
             scrollY: true,
             click: true,
             probeType: 2,
@@ -52,7 +54,7 @@ class Scroll extends React.Component<Props, State>{
         const { children, refreshTips } = this.props
         const { dropDownRefresh } = this.state
         return (
-            <div className="scroll-box wrapper BScroll">
+            <div className="scroll-box" ref = "wrapper">
                 <div className="scroll-wrap-list" style={{ paddingBottom: '2rem' }}>
                     <Tips lei="refresh-tips" isShow={dropDownRefresh} >释放即可刷新</Tips>
                     {/* <Tips lei="refresh-tips" isShow={refreshTips} >加载中...</Tips> */}
