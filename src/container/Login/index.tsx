@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import { setToken } from '../../store/action'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
-
+import Toast from './../../baseUi/Toast/index'
 interface Props {
     history: any
     setToken:Function
@@ -31,7 +31,7 @@ class Login extends Component<Props, State>{
         const { token } = this.state
         const { setToken } = this.props
         if (!token) {
-            console.log("请输入token")
+            Toast.info('请输入token')
             return
         }
         console.log(token)
@@ -40,9 +40,8 @@ class Login extends Component<Props, State>{
             if(res){
                 this.props.history.push('/my')
             }else{
-                console.log('效验失败')
+                Toast.info('效验失败')
             }
-            
         })
         
         
