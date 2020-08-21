@@ -1,6 +1,6 @@
 import React from 'react'
 import Tips from '../../components/Tips/Tips'
-import RefreshLoading from '../../components/Refresh-loading'
+import RefreshLoading from '../Refresh-loading'
 import BScroll from 'better-scroll'
 
 interface Props {
