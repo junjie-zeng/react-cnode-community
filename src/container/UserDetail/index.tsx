@@ -109,7 +109,8 @@ class UserDetail extends React.Component<Props, State> {
             <div>
                 <Header backFun={() => { this.props.history.go(-1) }} title={userInfo.loginname} icon2='icon-qita' iconFun={this._setAssist} />
                 <div className="user-his-comment">
-                    <div className="user-bg">
+                    <div className="user-wrap">
+                        <div className = "user-bg" style={{ backgroundImage: `url(${userInfo.avatar_url})` }}></div>
                         <div className="user-touxiang" style={{ backgroundImage: `url(${userInfo.avatar_url})` }}></div>
                     </div>
                     <CommentTab tabs={tabs} commentSwitch={this._commentSwitch} />

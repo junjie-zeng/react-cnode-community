@@ -39,7 +39,8 @@ class My extends Component<Props, State> {
             <div>
                 <Header title={user.loginname || '用户中心'} />
                 <div className="my-box">
-                    <div className="user-bg">
+                    <div className="user-wrap">
+                        <div className = "user-bg" style={{ backgroundImage: `url(${user.avatar_url})` }}></div>
                         <div className="user-touxiang" style={{ backgroundImage: `url(${user.avatar_url})` }}></div>
                     </div>
                     <ul className="my-wrap">

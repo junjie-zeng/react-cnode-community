@@ -129,10 +129,12 @@ a {
 }
 
 /* 加载动画 */
-.refresh-loading-box{
+
+.refresh-loading-box {
   height: 2rem;
   /* transition: .8s; */
 }
+
 .refresh-loading {
   height: 1.3rem;
   width: 100%;
@@ -175,8 +177,8 @@ a {
   }
 }
 
-
 /* 媒体查询 */
+
 @media screen and (min-width:320px) {
   html {
     font-size: 62.5% !important;
@@ -558,11 +560,28 @@ input, button {
   background: #fff;
 }
 
-.user-bg {
+.user-wrap {
   position: relative;
   height: 20rem;
   background: url(./assets/image/bj-1.jpg) no-repeat;
 }
+
+.user-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #4a4948;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-filter: blur(.8rem);
+  filter: blur(.8rem);
+}
+
+/* .user-bg img{
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+} */
 
 .user-touxiang {
   position: absolute;
