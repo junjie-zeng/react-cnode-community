@@ -98,6 +98,7 @@ a {
   height: 3.5rem;
   line-height: 3.5rem;
   color: #9a9a9a;
+  transition: 1s;
 }
 
 @keyframes msgTips {
@@ -130,6 +131,7 @@ a {
 /* 加载动画 */
 .refresh-loading-box{
   height: 2rem;
+  /* transition: .8s; */
 }
 .refresh-loading {
   height: 1.3rem;
