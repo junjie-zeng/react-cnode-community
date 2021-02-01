@@ -3,7 +3,6 @@
 
 - CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究
 - 用 React 写主要是为了熟悉React + Typescript + Redux的完整流程
-- 自定义Scroll,Toast,Loading公共组件
 - 感谢 CNodejs 社区提供的 API
 
 ##### 体验地址
