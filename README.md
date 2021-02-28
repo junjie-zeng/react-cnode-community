@@ -9,6 +9,7 @@
 - 采用 better-scroll 定义移动端滑动基础组件
 - 自定义Toast基础组件用于通知
 - 封装Axios，接口统一放在了src/api/index
+- 定义CSS3动画使页面切换无断层感
 - 最后感谢 CNodejs 社区提供的 API
 
 ##### 体验地址
