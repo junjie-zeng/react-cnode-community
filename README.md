@@ -1,5 +1,5 @@
 
-# CNode 社区（CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究） 
+# 仿CNode 社区（CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究） 
 - 使用 React编写 为了熟悉React + Typescript + Redux的开发流程
 - DIV + CSS流式布局，Rem适配搭建响应式页面
 - 使用React React Router构建单页面应用
@@ -13,8 +13,14 @@
 - 最后感谢 CNodejs 社区提供的 API
 
 ##### 体验地址
-	http://47.111.227.182/#/home
-	
+	[在线体验地址](http://47.111.227.182/#/home)
+
+##### 打开方式
+1. 将项目clone下来
+	- $ git clone https://github.com/junjie-zeng/react-cnode-community.git
+	- $ cd react-cnode-community
+	- $ npm install
+
 ##### 技术栈
 1. DIV+CSS：搭建页面，美化页面
 2. React：是一个用于构建用户界面的 JAVASCRIPT 库
@@ -30,7 +36,7 @@
 ##### 其它
 - iconfont: 阿里巴巴图标库
 
-##### 录屏
+
 
 
 
