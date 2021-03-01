@@ -59,7 +59,8 @@ class Home extends React.Component<Props, State> {
 
     handleJumpGitHub = () => {
         let user:any = localStorage.getItem('user')
-        let name = JSON.parse(user).loginname
+        let loginname = JSON.parse(user).loginname
+        let name = loginname ? loginname :'junjie-zeng'
         window.location.href = `https://github.com/${name}`
     }
 

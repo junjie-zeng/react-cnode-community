@@ -28,7 +28,7 @@ class UserCollect extends React.Component<any, State> {
     render() {
         const { loginname, collect ,isShow,collectPageBack,handleCollectDropDownRefresh} = this.props
 
-        const _style = { top: isShow ? 0 : '60rem' }
+        const _style = { top: isShow ? 0 : '67rem' }
         // console.log('props...', this.props)
         return (
             <div className="user-collect" style={_style}>
