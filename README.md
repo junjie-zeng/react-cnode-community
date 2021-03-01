@@ -20,6 +20,10 @@
 	- $ git clone https://github.com/junjie-zeng/react-cnode-community.git
 	- $ cd react-cnode-community
 	- $ npm install
+2. 运行
+	- $ npm start
+3. 打包
+	- $ npm run build
 
 ##### 技术栈
 1. DIV+CSS：搭建页面，美化页面
