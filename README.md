@@ -1,4 +1,9 @@
-# 仿CNode 社区（CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究） 
+# React仿CNode 社区（CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究） 
+
+##### 体验地址
+[在线体验地址](http://47.111.227.182/#/home)
+
+##### 说明
 - 使用 React编写 为了熟悉React + Typescript + Redux的开发流程
 - DIV + CSS流式布局，Rem适配搭建响应式页面
 - 使用React React Router构建单页面应用
@@ -13,8 +18,6 @@
 
 ![image](https://github.com/junjie-zeng/react-cnode-community/blob/master/src/assets/image/CNode.png)
 
-##### 体验地址
-[在线体验地址](http://47.111.227.182/#/home)
 
 ##### 打开方式
 1. 将项目clone下来
