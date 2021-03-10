@@ -1,5 +1,5 @@
-# React仿CNode 社区（CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究） 
-
+# React仿CNode 社区（感受React + Typescript + Redux开发流程） 
+CNode 社区为国内最专业的 Node.js 开源技术社区,致力于 Node.js 的技术研究
 ##### 体验地址
 [在线体验地址](http://47.111.227.182/#/home)
 
